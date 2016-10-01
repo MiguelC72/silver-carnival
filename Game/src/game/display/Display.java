@@ -1,10 +1,15 @@
-package game.Display;
+package game.display;
+
+import java.awt.Canvas;
+import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
 public class Display {
 	
 	private JFrame frame;
+	
+	private Canvas canvas;
 	
 	private String title; 		// Window title
 	private int width, height;	// Window width and height in pixels
@@ -39,6 +44,16 @@ public class Display {
 		
 		// Allows the JFrame to be seen
 		frame.setVisible(true);
+		
+		// Creates the Frame's canvas and sets the size to that of 
+		// the window and add it to the frame
+		canvas = new Canvas();
+		canvas.setPreferredSize(new Dimension(width, height));
+		canvas.setMaximumSize(new Dimension(width, height));
+		canvas.setMinimumSize(new Dimension(width, height));
+		
+		frame.add(canvas);
+		frame.pack();
 		
 	}
 }

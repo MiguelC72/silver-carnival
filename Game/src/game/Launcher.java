@@ -1,12 +1,12 @@
 package game;
 
-import game.Display.Display;
+import game.display.Display;
 
 public class Launcher {
 
 	public static void main(String[] args) {
 
-		new Display("Test Title", 300, 300);
+		new MainGame("Test Title", 300, 300);
 
 	}
 
