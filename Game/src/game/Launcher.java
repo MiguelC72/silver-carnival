@@ -1,13 +1,13 @@
 package game;
 
-import game.display.Display;
 
 public class Launcher {
 
 	public static void main(String[] args) {
 
-		new MainGame("Test Title", 300, 300);
-
+		MainGame game = new MainGame("Test Title", 600, 600);
+		
+		game.start();
 	}
 
 }
