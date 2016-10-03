@@ -3,29 +3,51 @@ package game;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
+import game.Input.KeyManager;
 import game.display.Display;
 import game.gfx.Assets;
+import game.gfx.GameCamera;
+import game.states.Game;
+import game.states.Settings;
+import game.states.State;
+import game.states.Title;
 
 public class MainGame implements Runnable {
 
+	// Window Things
 	private Display display;
+	private int width, height;
+	public String title;
 	
+	// Input
+	private KeyManager keyManager;
+	
+	// Camera
+	private GameCamera gameCamera;
+	
+	// Handler
+	private Handler handler;
+	
+	// Threads
 	private Thread thread;
 	private boolean running = false;
 	
+	// Graphic variables
 	private BufferStrategy bs;
 	private Graphics g;
 	
-	public int width, height;
-	public String title;
-	
-	int x;
+	// States
+	private State gameState;
+	private State settingsState;
+	private State titleState;
 	
 	public MainGame(String title, int width, int height) {
 		
 		this.title = title;
 		this.width = width;
 		this.height = height;
+		
+		keyManager = new KeyManager();
 		
 	}
 	
@@ -79,6 +101,10 @@ public class MainGame implements Runnable {
 		stop();
 	}
 	
+	public KeyManager getKeyManager() {
+		return keyManager;
+	}
+	
 	public synchronized void start() {
 		
 		if (running)
@@ -86,6 +112,18 @@ public class MainGame implements Runnable {
 		running = true;
 		thread = new Thread(this);
 		thread.start();
+	}
+	
+	public GameCamera getGameCamera() {
+		return gameCamera;
+	}
+	
+	public int getWidth() {
+		return width;	
+	}
+	
+	public int getHeight() {
+		return height;
 	}
 	
 	public synchronized void stop() {
@@ -102,11 +140,25 @@ public class MainGame implements Runnable {
 	private void init() {
 		
 		display = new Display(title, width, height);
+		display.getFrame().addKeyListener(keyManager);
 		Assets.init();
+		
+		handler = new Handler(this);
+		gameCamera = new GameCamera(handler, 0, 0);
+		
+		
+		gameState = new Game(handler);
+		settingsState = new Settings(handler);
+		titleState = new Title(handler);
+		State.setState(gameState);
 	}
 	
 	private void update() {
-		x += 1;
+		keyManager.update();
+		
+		if (State.getState() != null) {
+			State.getState().update();
+		}
 	}
 	
 	private void render() {
@@ -125,7 +177,9 @@ public class MainGame implements Runnable {
 		
 		// start drawing
 		
-		g.drawImage(Assets.tree, x, 0, null);
+		if (State.getState() != null) {
+			State.getState().render(g);
+		}
 		
 		// finish drawing
 		
