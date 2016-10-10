@@ -35,6 +35,7 @@ public class World {
 	
 	public void render(Graphics g) {
 		
+		// Tiles
 		int xStart = (int) Math.max(0, handler.getGameCamera().getxOffset() / Tile.TILEWIDTH);
 		int xEnd = (int) Math.min(width
 				, (handler.getGameCamera().getxOffset() + handler.getWidth()) / Tile.TILEWIDTH + 1);
