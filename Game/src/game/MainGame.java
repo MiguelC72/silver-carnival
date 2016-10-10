@@ -56,7 +56,7 @@ public class MainGame implements Runnable {
 		init();
 		
 		// Frames Per Second, the amount of times we want to call this method
-		int fps = 20; 
+		int fps = 60; 
 		
 		// the max time in nanoseconds that we have to execute the update and render methods
 		double timePerUpdate = 1000000000 / fps; 

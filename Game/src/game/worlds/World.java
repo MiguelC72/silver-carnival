@@ -4,6 +4,9 @@ import java.awt.Graphics;
 
 import game.Handler;
 import game.Tiles.Tile;
+import game.entities.EntityManager;
+import game.entities.creatures.Player;
+import game.entities.creatures.Slime;
 import game.utils.Utils;
 
 public class World {
@@ -12,23 +15,22 @@ public class World {
 	private int width, height;
 	private int spawnX, spawnY;
 	private int[][] wTiles; // world tiles
+	// Entities
+	private EntityManager entityManager;
 	
 	public World(Handler handler, String path) {
 		
 		this.handler = handler;
+		entityManager = new EntityManager(handler, new Player(handler, 100, 100));
+		entityManager.addEntity(new Slime(handler, (Tile.TILEWIDTH * 15), (Tile.TILEHEIGHT * 9)));
 		loadWorld(path);
-	}
-	
-	public int getSpawnX() {
-		return spawnX;
-	}
-
-	public int getSpawnY() {
-		return spawnY;
+		
+		entityManager.getPlayer().setX(spawnX);
+		entityManager.getPlayer().setY(spawnY);
 	}
 
 	public void update() {
-		
+		entityManager.update();
 	}
 	
 	public void render(Graphics g) {
@@ -46,6 +48,9 @@ public class World {
 						, (int) (y * Tile.TILEHEIGHT - handler.getGameCamera().getyOffset()));
 			}
 		}
+		
+		// Entities
+		entityManager.render(g);
 	}
 	
 	public Tile getTile(int x, int y) {
@@ -85,4 +90,22 @@ public class World {
 	public int getHeight() {
 		return height;
 	}
+	
+	
+	public int getSpawnX() {
+		return spawnX;
+	}
+
+	public int getSpawnY() {
+		return spawnY;
+	}
+
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
+
 }
