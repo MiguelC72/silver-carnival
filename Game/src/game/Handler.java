@@ -6,35 +6,35 @@ import game.worlds.World;
 
 public class Handler {
 
-	private MainGame game;
+	private MainGame mainGame;
 	private World world;
 	
 	public Handler(MainGame game) {
-		this.game = game;
+		this.mainGame = game;
 	}
 	
 	public int getWidth() {
-		return game.getWidth();
+		return mainGame.getWidth();
 	}
 	
 	public int getHeight() {
-		return game.getHeight();
+		return mainGame.getHeight();
 	}
 
 	public KeyManager getKeyManager() {
-		return game.getKeyManager();
+		return mainGame.getKeyManager();
 	}
 	
 	public GameCamera getGameCamera() {
-		return game.getGameCamera();
+		return mainGame.getGameCamera();
 	}
 	
 	public MainGame getGame() {
-		return game;
+		return mainGame;
 	}
 
 	public void setGame(MainGame game) {
-		this.game = game;
+		this.mainGame = game;
 	}
 
 	public World getWorld() {

@@ -3,33 +3,32 @@ package game.Input;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class KeyManager implements KeyListener {
+public abstract class KeyManager implements KeyListener {
 
-	private boolean[] keys;
+	protected boolean[] keys;
+	private static KeyManager currentKey = null;
 	
-	public boolean up, down, left, right;
+	public boolean up, down, left, right, pause;
 	
 	public KeyManager() {
 		
 		keys = new boolean[256];
 	}
 	
-	public void update() {
+	public abstract void update() {
 		
-		up = keys[KeyEvent.VK_W];
-		down = keys[KeyEvent.VK_S];
-		left = keys[KeyEvent.VK_A];
-		right = keys[KeyEvent.VK_D];
+		
+		
 		
 	}
 	// called whenever a key on the keyboard is pressed
-	public void keyPressed(KeyEvent e) {
+	public abstract void keyPressed(KeyEvent e) {
 		
 		keys[e.getKeyCode()] = true;
 	}
 
 	// called whenever a key on the keyboard is released
-	public void keyReleased(KeyEvent e) {
+	public abstract void keyReleased(KeyEvent e) {
 		
 		keys[e.getKeyCode()] = false;
 		

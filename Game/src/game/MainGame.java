@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 import game.Input.KeyManager;
+import game.Input.KeyStates.KeyGame;
 import game.display.Display;
 import game.gfx.Assets;
 import game.gfx.GameCamera;
@@ -20,7 +21,8 @@ public class MainGame implements Runnable {
 	public String title;
 	
 	// Input
-	private KeyManager keyManager;
+	private KeyManager keyGame;
+	private KeyManager keySet;
 	
 	// Camera
 	private GameCamera gameCamera;
@@ -29,6 +31,7 @@ public class MainGame implements Runnable {
 	private Handler handler;
 	
 	// Threads
+	private int fps;
 	private Thread thread;
 	private boolean running = false;
 	
@@ -47,8 +50,81 @@ public class MainGame implements Runnable {
 		this.width = width;
 		this.height = height;
 		
-		keyManager = new KeyManager();
+		keyGame = new KeyGame();
 		
+	}
+	
+	private void update() {
+		keyGame.update();
+		if (keyManager.pause)
+			State.setState(settingsState);
+		
+		if (State.getState() != null) {
+			State.getState().update();
+		}
+	}
+	
+	private void render() {
+		
+		// gets the amount of buffers the canvas is going to use
+		bs = display.getCanvas().getBufferStrategy();
+		// if there isn't any buffers get 3 buffers
+		if (bs == null)	{
+			display.getCanvas().createBufferStrategy(3);
+			return;
+		}
+		g = bs.getDrawGraphics();
+		
+		// clear screen
+		g.clearRect(0, 0, width, height);
+		
+		// start drawing
+		
+		if (State.getState() != null) {
+			State.getState().render(g);
+		}
+		
+		// finish drawing
+		
+		// Draws to the screen
+		bs.show();
+		g.dispose();
+	}
+	
+	private void init() {
+		
+		display = new Display(title, width, height);
+		display.getFrame().addKeyListener(keyManager);
+		Assets.init();
+		
+		handler = new Handler(this);
+		gameCamera = new GameCamera(handler, 0, 0);
+		
+		
+		gameState = new Game(handler);
+		settingsState = new Settings(handler);
+		titleState = new Title(handler);
+		State.setState(gameState);
+	}
+	
+	public synchronized void start() {
+		
+		if (running)
+			return;
+		running = true;
+		thread = new Thread(this);
+		thread.start();
+	}
+	
+	public synchronized void stop() {
+		
+		if (!running)
+			return;
+		try {
+			thread.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void run() {
@@ -56,7 +132,7 @@ public class MainGame implements Runnable {
 		init();
 		
 		// Frames Per Second, the amount of times we want to call this method
-		int fps = 60; 
+		fps = 60; 
 		
 		// the max time in nanoseconds that we have to execute the update and render methods
 		double timePerUpdate = 1000000000 / fps; 
@@ -101,17 +177,10 @@ public class MainGame implements Runnable {
 		stop();
 	}
 	
+	// getters and setters
+	
 	public KeyManager getKeyManager() {
 		return keyManager;
-	}
-	
-	public synchronized void start() {
-		
-		if (running)
-			return;
-		running = true;
-		thread = new Thread(this);
-		thread.start();
 	}
 	
 	public GameCamera getGameCamera() {
@@ -125,66 +194,14 @@ public class MainGame implements Runnable {
 	public int getHeight() {
 		return height;
 	}
-	
-	public synchronized void stop() {
-		
-		if (!running)
-			return;
-		try {
-			thread.join();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+
+	public State getGameState() {
+		return gameState;
 	}
-	
-	private void init() {
-		
-		display = new Display(title, width, height);
-		display.getFrame().addKeyListener(keyManager);
-		Assets.init();
-		
-		handler = new Handler(this);
-		gameCamera = new GameCamera(handler, 0, 0);
-		
-		
-		gameState = new Game(handler);
-		settingsState = new Settings(handler);
-		titleState = new Title(handler);
-		State.setState(gameState);
+
+	public State getSettingsState() {
+		return settingsState;
 	}
+
 	
-	private void update() {
-		keyManager.update();
-		
-		if (State.getState() != null) {
-			State.getState().update();
-		}
-	}
-	
-	private void render() {
-		
-		// gets the amount of buffers the canvas is going to use
-		bs = display.getCanvas().getBufferStrategy();
-		// if there isn't any buffers get 3 buffers
-		if (bs == null)	{
-			display.getCanvas().createBufferStrategy(3);
-			return;
-		}
-		g = bs.getDrawGraphics();
-		
-		// clear screen
-		g.clearRect(0, 0, width, height);
-		
-		// start drawing
-		
-		if (State.getState() != null) {
-			State.getState().render(g);
-		}
-		
-		// finish drawing
-		
-		// Draws to the screen
-		bs.show();
-		g.dispose();
-	}
 }
