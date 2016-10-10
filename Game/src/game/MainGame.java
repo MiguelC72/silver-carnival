@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 import game.Input.KeyManager;
-import game.Input.KeyStates.KeyGame;
 import game.display.Display;
 import game.gfx.Assets;
 import game.gfx.GameCamera;
@@ -21,8 +20,7 @@ public class MainGame implements Runnable {
 	public String title;
 	
 	// Input
-	private KeyManager keyGame;
-	private KeyManager keySet;
+	private KeyManager keyManager;
 	
 	// Camera
 	private GameCamera gameCamera;
@@ -50,14 +48,16 @@ public class MainGame implements Runnable {
 		this.width = width;
 		this.height = height;
 		
-		keyGame = new KeyGame();
+		keyManager = new KeyManager();
 		
 	}
 	
 	private void update() {
-		keyGame.update();
+		keyManager.update();
 		if (keyManager.pause)
 			State.setState(settingsState);
+		else
+			State.setState(gameState);
 		
 		if (State.getState() != null) {
 			State.getState().update();

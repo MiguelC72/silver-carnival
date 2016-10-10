@@ -13,7 +13,7 @@ public class Settings extends State{
 	}
 
 	public void update() {
-		if (!handler.getKeyManager().pause) {
+		if (!(handler.getKeyManager().pause)) {
 			State.setState(handler.getGame().getGameState());
 		}
 		
