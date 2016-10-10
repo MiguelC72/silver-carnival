@@ -12,6 +12,8 @@ public class Tile {
 	public static Tile brickTile = new BrickTile(1);
 	public static Tile lavaTile = new LavaTile(2);
 	public static Tile treeTile = new TreeTile(3);
+	public static Tile caveEnt = new CaveEnterTile(4);
+	public static Tile caveFloor = new CaveFloorTile(5);
 	
 	// CLASS
 	
