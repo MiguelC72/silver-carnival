@@ -33,6 +33,7 @@ public class Slime extends Creature{
 	}
 
 	public void getInput() {
+		
 		xMove = 0;
 		yMove = 0;
 		
