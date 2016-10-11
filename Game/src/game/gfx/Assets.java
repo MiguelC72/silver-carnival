@@ -6,7 +6,7 @@ public class Assets {
 	
 	private static final int width = 20, height = 20;
 	
-	public static BufferedImage player, slime, grass, stone, lava, tree, cE1, cFloor;
+	public static BufferedImage player, slime, grass, stone, lava, tree, cE1, cFloor, mouse;
 	
 	public static void init() {
 		
@@ -23,6 +23,7 @@ public class Assets {
 		SpriteSheet sheet2 = new SpriteSheet(ImageLoader.loadImage("/textures/creatureSheet.png"));
 		
 		slime = sheet2.crop(0, 0, width, height);
+		mouse = sheet2.crop(width, 0, width, height);
 		
 	}
 }
