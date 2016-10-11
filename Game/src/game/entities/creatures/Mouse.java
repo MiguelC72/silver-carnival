@@ -5,7 +5,7 @@ import java.util.Random;
 
 import game.Handler;
 import game.gfx.Assets;
-
+//Random
 public class Mouse extends Creature{
 	
 	private Random random;
