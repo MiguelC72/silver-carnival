@@ -79,10 +79,10 @@ public abstract class Creature extends Entity{
 		}
 	} 
 	
+	// passed in x and y are coordinates with 1 unit of space being the width of a tile
 	protected boolean collisionWithTile(int x, int y) {
 		return handler.getWorld().getTile(x, y).isSolid();
 	}
-	
 	
 	// getters and setters below
 	public float getxMove() {

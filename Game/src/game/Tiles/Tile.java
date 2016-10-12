@@ -14,6 +14,7 @@ public class Tile {
 	public static Tile treeTile = new TreeTile(3);
 	public static Tile caveEnt = new CaveEnterTile(4);
 	public static Tile caveFloor = new CaveFloorTile(5);
+	public static Tile cameraTile = new CameraTile(6);
 	
 	// CLASS
 	
@@ -38,10 +39,13 @@ public class Tile {
 	public void render(Graphics g, int x, int y) {
 		
 		g.drawImage(texture, x, y, TILEWIDTH, TILEHEIGHT, null);
-		
 	}
 	
 	public boolean isSolid() {
+		return false;
+	}
+	
+	public boolean isCamera() {
 		return false;
 	}
 	
