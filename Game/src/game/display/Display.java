@@ -5,16 +5,43 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
+/**
+ * The Display class.
+ * Creates the main canvas and the main JFrame that will be used in the program.
+ * @author Miguel Cardenas Gustavo Chavez
+ *
+ */
 public class Display {
 	
+	/**
+	 * The Window itself
+	 */
 	private JFrame frame;
 	
+	/**
+	 * What allows the window to be drawn on
+	 */
 	private Canvas canvas;
 	
-	private String title; 		// Window title
-	private int width, height;	// Window width and height in pixels
+	/**
+	 * The Window's Title Bar
+	 */
+	private String title; 
 	
-	// Sets the variables of this Display class when called by the launcher
+	/**
+	 * The Window's width and height in pixels
+	 */
+	private int width, height;
+	
+	/**
+	 * Constructs a Display setting the window's default title, width, and height
+	 * @param title
+	 * 		Title of the Window
+	 * @param width
+	 * 		Window's width in pixels
+	 * @param height
+	 * 		Window's height in pixels
+	 */
 	public Display(String title, int width, int height) {
 		
 		this.title = title;
@@ -24,7 +51,10 @@ public class Display {
 		createDisplay();
 	}
 	
-	// Actually creates the window
+	/**
+	 * Actually creates the window itself setting all default variables
+	 * and boolean settings
+	 */
 	private void createDisplay() {
 		
 		// Make a JFrame object
@@ -58,11 +88,21 @@ public class Display {
 		
 	}
 	
+	/**
+	 * Returns the window's canvas
+	 * @return
+	 * 	The Window's canvas
+	 */
 	public Canvas getCanvas() {
 		return canvas;
 		
 	}
 	
+	/**
+	 * Returns the window's JFrame 
+	 * @return
+	 * 	The Window's frame
+	 */
 	public JFrame getFrame() {
 		return frame;
 	}

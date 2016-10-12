@@ -12,36 +12,95 @@ import game.states.Settings;
 import game.states.State;
 import game.states.Title;
 
+/**
+ * This is the Main class that's running everything.
+ * Creates all the needed variables and settings as well as
+ * calls all the update/render methods.
+ * Contains the game's running loop
+ * @author Miguel Cardenas Gustavo Chavez
+ *
+ */
 public class MainGame implements Runnable {
 
 	// Window Things
+	/**
+	 * The window's Display
+	 */
 	private Display display;
-	private int width, height;
+	/**
+	 * The window's width/height in pixels
+	 */
+	private int width, height;	
+	/**
+	 * The window's title
+	 */
 	public String title;
 	
 	// Input
+	/**
+	 * The main key manager
+	 */
 	private KeyManager keyManager;
 	
 	// Camera
+	/**
+	 * The game's camera
+	 */
 	private GameCamera gameCamera;
 	
 	// Handler
+	/**
+	 * The game's handler
+	 */
 	private Handler handler;
 	
 	// Threads
+	/**
+	 * The set frames per second
+	 */
 	private int fps;
+	/**
+	 * The main game thread
+	 */
 	private Thread thread;
+	/**
+	 * Determines whether or not the game is currently running
+	 */
 	private boolean running = false;
 	
 	// Graphic variables
+	/**
+	 * The main buffer strategy
+	 */
 	private BufferStrategy bs;
+	/**
+	 * The main graphics object
+	 */
 	private Graphics g;
 	
 	// States
+	/**
+	 * Contains the game's state
+	 */
 	private State gameState;
+	/**
+	 * Contains the setting's state
+	 */
 	private State settingsState;
+	/**
+	 * Contains the title's state
+	 */
 	private State titleState;
 	
+	/**
+	 * Constructs the MainGame object, and sets the default values of the window
+	 * @param title
+	 * 	The window's title bar
+	 * @param width
+	 * 	The window's width in pixels
+	 * @param height
+	 * 	The window's height in pixels
+	 */
 	public MainGame(String title, int width, int height) {
 		
 		this.title = title;
@@ -52,6 +111,12 @@ public class MainGame implements Runnable {
 		
 	}
 	
+	/**
+	 * The Main update method.
+	 * Updates the keyManager, which will then determine what state
+	 * the game is in. (Settings or Game)
+	 * Doesn't call a state update if the variable isn't set.
+	 */
 	private void update() {
 		keyManager.update();
 		if (keyManager.pause)
@@ -64,6 +129,14 @@ public class MainGame implements Runnable {
 		}
 	}
 	
+	/**
+	 * The Main render method.
+	 * This grabs the canvas and clears its screen,
+	 * then it calls the current state's render method.
+	 * Finally it draws whatever was rendered onto the screen.
+	 * 
+	 * If there isn't a state in the variable, then it does nothing.
+	 */
 	private void render() {
 		
 		// gets the amount of buffers the canvas is going to use
@@ -91,6 +164,10 @@ public class MainGame implements Runnable {
 		g.dispose();
 	}
 	
+	/**
+	 * Initializes all the game/window variables and sets the defaults.
+	 * Current default state is the Game state
+	 */
 	private void init() {
 		
 		display = new Display(title, width, height);
@@ -107,6 +184,9 @@ public class MainGame implements Runnable {
 		State.setState(gameState);
 	}
 	
+	/**
+	 * Starts the main game loop
+	 */
 	public synchronized void start() {
 		
 		if (running)
@@ -116,6 +196,9 @@ public class MainGame implements Runnable {
 		thread.start();
 	}
 	
+	/**
+	 * Stops the main game loop
+	 */
 	public synchronized void stop() {
 		
 		if (!running)
@@ -127,6 +210,12 @@ public class MainGame implements Runnable {
 		}
 	}
 	
+	/**
+	 * The Run loop determines when to call the main update and render methods.
+	 * It calls the MainGame's initialization method and uses a frames per second
+	 * algorithm.
+	 * Also displays the frames per second on the console and window title.
+	 */
 	public void run() {
 		
 		init();
@@ -180,26 +269,51 @@ public class MainGame implements Runnable {
 	
 	// getters and setters
 	
+	/**
+	 * Returns the MainGame keyManager
+	 * @return
+	 * 	The keyManager
+	 */
 	public KeyManager getKeyManager() {
 		return keyManager;
 	}
-	
+	/**
+	 * Returns the MainGame camera
+	 * @return
+	 * 	The gameCamera
+	 */
 	public GameCamera getGameCamera() {
 		return gameCamera;
 	}
-	
+	/**
+	 * Returns the window's width in pixels
+	 * @return
+	 * 	The window's width
+	 */
 	public int getWidth() {
 		return width;	
 	}
-	
+	/**
+	 * Returns the window's height in pixels
+	 * @return
+	 * 	The window's height.
+	 */
 	public int getHeight() {
 		return height;
 	}
-
+	/**
+	 * Returns the game state
+	 * @return
+	 * 	The GameState
+	 */
 	public State getGameState() {
 		return gameState;
 	}
-
+	/**
+	 * Returns the setting state
+	 * @return
+	 * 	The SettingsState
+	 */
 	public State getSettingsState() {
 		return settingsState;
 	}

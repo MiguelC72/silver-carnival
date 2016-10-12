@@ -6,8 +6,18 @@ import java.awt.Rectangle;
 import game.Handler;
 import game.MainGame;
 
+/**
+ * The Entity class is an abstract class that is the basis
+ * for all of the game's entities, which could be the player, enemies
+ * or static things like trees.
+ * @author Miguel Cardenas Gustavo Chavez
+ *
+ */
 public abstract class Entity {
 	
+	/**
+	 * 
+	 */
 	protected Handler handler;
 	protected float x, y;
 	protected int width, height;
