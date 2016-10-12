@@ -8,6 +8,13 @@ import javax.swing.JFrame;
 /**
  * The Display class.
  * Creates the main canvas and the main JFrame that will be used in the program.
+ * 
+ * This game program uses two types of unit representation on its display
+ * pixels - standard screen pixel 
+ * 			usually represented using an int type
+ * tixels - a pixel value that is calculated using 
+ * 			the tile's width and height values 
+ * 			usually represented using a float type
  * @author Miguel Cardenas Gustavo Chavez
  *
  */
