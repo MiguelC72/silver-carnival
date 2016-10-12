@@ -22,7 +22,7 @@ public class World {
 		
 		this.handler = handler;
 		entityManager = new EntityManager(handler, new Player(handler, 100, 100));
-		entityManager.addEntity(new Slime(handler, (Tile.TILEWIDTH * 15), (Tile.TILEHEIGHT * 9)));
+		entityManager.addEntity(new Slime(handler, (Tile.TILEWIDTH * 20), (Tile.TILEHEIGHT * 13)));
 		loadWorld(path);
 		
 		entityManager.getPlayer().setX(spawnX);

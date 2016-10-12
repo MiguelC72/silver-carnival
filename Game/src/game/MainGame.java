@@ -168,7 +168,8 @@ public class MainGame implements Runnable {
 			
 			// checks if the timer has exceeded 1 second
 			if (timer >= 1000000000) {
-				System.out.println("Updates and Frames: " + updates);
+				System.out.println("Updates/Frames: " + updates);
+				display.getFrame().setTitle((title + " | FPS - " + updates));
 				updates = 0;
 				timer = 0;
 			}

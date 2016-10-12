@@ -53,8 +53,10 @@ public class Slime extends Creature{
 	}
 	public void render(Graphics g) {
 		
-		g.drawImage(Assets.slime, (int) (x - handler.getGameCamera().getxOffset())
-				, (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+		int posX = (int) (x - handler.getGameCamera().getxOffset());
+		int posY = (int) (y - handler.getGameCamera().getyOffset());
+		
+		g.drawImage(Assets.slime, posX, posY, width, height, null);
 		
 		// draws a bounding box
 		//g.setColor(Color.red);

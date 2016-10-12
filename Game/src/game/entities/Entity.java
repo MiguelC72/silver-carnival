@@ -16,10 +16,10 @@ public abstract class Entity {
 	public Entity(Handler handler, float x, float y, int width, int height) {
 		
 		this.handler = handler;
-		this.x = x;
-		this.y = y;
-		this.width = width;
-		this.height = height;
+		this.x = x;				// Entity's x position
+		this.y = y;				// Entity's y position
+		this.width = width;		// Entity's width
+		this.height = height;	// Entity's height
 		
 		bounds = new Rectangle(0, 0, width, height);
 	}
