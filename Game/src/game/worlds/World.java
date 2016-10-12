@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import game.Handler;
 import game.Tiles.Tile;
 import game.entities.EntityManager;
+import game.entities.creatures.Mouse;
 import game.entities.creatures.Player;
 import game.entities.creatures.Slime;
 import game.utils.Utils;
@@ -22,7 +23,8 @@ public class World {
 		
 		this.handler = handler;
 		entityManager = new EntityManager(handler, new Player(handler, 100, 100));
-		entityManager.addEntity(new Slime(handler, (Tile.TILEWIDTH * 20), (Tile.TILEHEIGHT * 13)));
+		entityManager.addEntity(new Slime(handler, (Tile.TILEWIDTH * 15), (Tile.TILEHEIGHT * 9)));
+		entityManager.addEntity(new Mouse(handler, (Tile.TILEWIDTH * 10), (Tile.TILEHEIGHT * 5)));
 		loadWorld(path);
 		
 		entityManager.getPlayer().setX(spawnX);
