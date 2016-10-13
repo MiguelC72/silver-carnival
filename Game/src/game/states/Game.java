@@ -8,10 +8,25 @@ import game.entities.creatures.Player;
 import game.entities.creatures.Slime;
 import game.worlds.World;
 
+/**
+ * The game state contains the main world object and is able to 
+ * update that object.
+ * @author Miguel Cardenas Gustavo Chavez
+ *
+ */
 public class Game extends State{
 	
+	/**
+	 * The world that the game will use
+	 */
 	private World world;
 	
+	/**
+	 * Constructs the game object, creates a new world object using
+	 * a predetermined file path, and sets it in the handler
+	 * @param handler
+	 * 	The main handler
+	 */
 	public Game(Handler handler) {
 		
 		super(handler);
@@ -21,12 +36,18 @@ public class Game extends State{
 
 	}
 	
+	/**
+	 * Calls the world object's update method.
+	 */
 	public void update() {
 		world.update();
 		
 		
 	}
 	
+	/**
+	 * Calls the world object's render method.
+	 */
 	public void render(Graphics g) {
 		world.render(g);
 		
