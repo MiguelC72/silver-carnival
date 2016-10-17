@@ -20,7 +20,8 @@ public class GameCamera {
 	 * The main handler
 	 */
 	private Handler handler;
-	//Constructor that is called from the mainGame file
+	
+		//Constructor that is called from the mainGame file
 	/**
 	 * Constructs a GameCamera object setting its variables and
 	 * draws the screen dependent on the pixel location given when called
@@ -36,6 +37,7 @@ public class GameCamera {
 		this.handler = handler;
 		this.xOffset = xOffset;
 		this.yOffset = yOffset;
+		
 	}
 	
 	/**
@@ -53,26 +55,6 @@ public class GameCamera {
 		} else if (yOffset > handler.getWorld().getHeight() * Tile.TILEHEIGHT - handler.getHeight()) {
 			yOffset = handler.getWorld().getHeight() * Tile.TILEHEIGHT - handler.getHeight();
 		}
-	}
-	
-	/**
-	 * Checks for empty map space and prevents camera from moving beyond camera tile bounds
-	 */
-	public void checkCameraSpace() {
-			
-	}
-	
-	/**
-	 * Checks for camera tile collision with camera size
-	 * @param x
-	 * X location of tile
-	 * @param y
-	 * Y location of tile
-	 * @return
-	 * Truth value for collision
-	 */
-	protected boolean collisionWithCamera(int x, int y){
-		return handler.getWorld().getTile(x, y).isCamera();
 	}
 	
 	/**
