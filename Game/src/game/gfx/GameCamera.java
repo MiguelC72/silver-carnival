@@ -13,7 +13,7 @@ import game.entities.Entity;
  */
 public class GameCamera {
 	/**
-	 *  The entities offset in pixels 
+	 *  The camera's x/y displacement in tixels
 	 */
 	private float xOffset, yOffset;
 	/**
@@ -22,14 +22,14 @@ public class GameCamera {
 	private Handler handler;
 	//Constructor that is called from the mainGame file
 	/**
-	 * Constructs a GameCamera object setting its variables and
-	 * draws the screen dependent on the pixel location given when called
+	 * Constructs a GameCamera object initializing its offsets (initial position) 
+	 * to the given variables. 
 	 * @param handler
 	 * The main handler object
 	 * @param xOffset
-	 * The number of pixels a sprite is drawn away from it's original location on a x axis
+	 *  The starting x position in tixels
 	 * @param yOffset
-	 * The number of pixels a sprite is drawn away from it's original location on a y axis
+	 * 	The starting y position in tixels
 	 */
 	public GameCamera(Handler handler, float xOffset, float yOffset) {
 		
@@ -40,6 +40,7 @@ public class GameCamera {
 	
 	/**
 	 * Checks for empty map space (beyond bounds) and prevents camera from moving past that 
+	 * by resetting its offset variables to 0
 	 */
 	public void checkBlankSpace() {
 		if (xOffset < 0) {
@@ -76,7 +77,7 @@ public class GameCamera {
 	}
 	
 	/**
-	 * Moves the camera so that the window is always centered on the character
+	 * Moves the camera so that the window is always centered on the given entity e
 	 * @param e
 	 * The entity which the camera centers on
 	 */
@@ -101,34 +102,35 @@ public class GameCamera {
 	//Getters and setters below
 	
 	/**
-	 * Returns the xOffset in number of pixels
+	 * Returns the xOffset in tixels
 	 * @return
-	 * xOffset of pixels for each sprite's pixels on canvas
+	 * 	The camera's x offset in tixels
 	 */
 	public float getxOffset() {
 		return xOffset;
 	}
 	/**
-	 * Sets the xOffset value to the given pixel amount
+	 * Sets the xOffset value to the given tixel amount
+	 * and checks for blank space
 	 * @param xOffset
-	 * The new number of pixels that a sprite is drawn away from it's original x location
+	 * The new x offset of the camera in tixels 
 	 */
 	public void setxOffset(float xOffset) {
 		this.xOffset = xOffset;
 		checkBlankSpace();
 	}
 	/**
-	 * Returns the yOffset in number of pixels
+	 * Returns the yOffset in tixels
 	 * @return
-	 * yOffset of pixels for each sprite's pixels on canvas
+	 *  The camera's y offset in tixels
 	 */
 	public float getyOffset() {
 		return yOffset;
 	}
 	/**
-	 * Sets the yOffset value to the given pixel amount
+	 * Sets the yOffset value to the given tixel amount
 	 * @param yOffset
-	 * The new number of pixels that a sprite is drawn away from it's original y location
+	 *  The new y offset of the camera in tixels
 	 */
 	public void setyOffset(float yOffset) {
 		this.yOffset = yOffset;

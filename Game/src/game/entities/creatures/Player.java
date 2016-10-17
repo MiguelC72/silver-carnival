@@ -6,9 +6,27 @@ import java.awt.Graphics;
 import game.Handler;
 import game.gfx.Assets;
 
+/**
+ * The Player class is the class that contains all the important 
+ * functions regarding the controllable player character.
+ * Including its update and render functions.
+ * @author Miguel Cardenas Gustavo Chavez
+ *
+ */
 public class Player extends Creature {
 
-
+	
+	/**
+	 * Creates the player creature and sets its position 
+	 * based on the passed parameters.
+	 * Also sets up the character's hitbox.
+	 * @param handler
+	 * 	The main handler
+	 * @param x
+	 * 	This entity's x position in tixels
+	 * @param y
+	 * 	This entity's y position in tixels
+	 */
 	public Player(Handler handler, float x, float y) {
 		
 		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, DEFAULT_CREATURE_HEIGHT);
@@ -19,6 +37,10 @@ public class Player extends Creature {
 		bounds.height = 20;
 	}
 
+	/**
+	 * Updates this entity by calling the getInput and move functions
+	 * Also tells the camera object to center itself on this entity
+	 */
 	public void update() {
 		
 		getInput();
@@ -26,7 +48,11 @@ public class Player extends Creature {
 		
 		handler.getGameCamera().centerOnEntity(this);
 	}
-
+	
+	/**
+	 * Uses the keyManager to determine where the user wants this
+	 * entity to move and sets the corresponding variables
+	 */
 	public void getInput() {
 		xMove = 0;
 		yMove = 0;
@@ -41,6 +67,12 @@ public class Player extends Creature {
 			xMove = speed;
 		
 	}
+	
+	/**
+	 * Renders this entity onto the screen based on the gameCamera's position
+	 * @param g
+	 * 	The main graphics object that also this method to draw to the screen.
+	 */
 	public void render(Graphics g) {
 		
 		g.drawImage(Assets.player, (int) (x - handler.getGameCamera().getxOffset())

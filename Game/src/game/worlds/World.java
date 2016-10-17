@@ -45,7 +45,7 @@ public class World {
 	private EntityManager entityManager;
 	
 	/**
-	 * Constructes a world object, sets variable defaults, adds new entities as well as the player
+	 * Constructs a world object, sets variable defaults, adds new entities as well as the player
 	 * , loads the world from the the given world file path, and sets the player's spawn point.
 	 * @param handler
 	 * 	The Main handler
@@ -144,6 +144,10 @@ public class World {
 				wTiles[x][y] = Utils.parseInt(tokens[(x + y * width) + 4]);
 			}
 		}
+		
+	}
+	
+	public void teleport() {
 		
 	}
 	

@@ -2,13 +2,29 @@ package game.gfx;
 
 import java.awt.image.BufferedImage;
 
+/**
+ * The Assets class is responsible for loading in the various 
+ * texture pictures and creating usable sprites.
+ * @author Miguel Cardenas Gustavo Chavez
+ *
+ */
 public class Assets {
 	
+	/**
+	 * The width/height of the textures in the given images (pixel values)
+	 */
 	private static final int width = 20, height = 20;
 	
+	/**
+	 * These are the various sprites used.
+	 */
 	public static BufferedImage player, slime, grass, stone, lava, tree, cE1, cFloor, mouse,
 		camera;
 	
+	/**
+	 * This function loads and crops out sprites from the /res/textures folder
+	 * and places the images in their respective bufferedImage variable
+	 */
 	public static void init() {
 		//Finds a tile sheet from resources folder
 		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/tileSheet.png"));

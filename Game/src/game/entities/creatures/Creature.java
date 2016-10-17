@@ -48,9 +48,9 @@ public abstract class Creature extends Entity{
 	 * @param handler
 	 * The main handler object.
 	 * @param x
-	 * The current movement in tixels on the x-axis.
+	 * This creature's x position in tixels
 	 * @param y
-	 * The current movement in tixels on the y-axis.
+	 * This creature's y position in tixels
 	 * @param width
 	 * The width of the creature.
 	 * @param height
@@ -133,7 +133,7 @@ public abstract class Creature extends Entity{
 	 * @param x
 	 * The x coordinate in tixels.
 	 * @param y
-	 * The y coordinate in tixles.
+	 * The y coordinate in tixels.
 	 * @return
 	 * Returns true if the tixel coordinates are in a solid tile or false
 	 * if not.

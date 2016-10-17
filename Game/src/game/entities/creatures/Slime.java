@@ -8,10 +8,29 @@ import game.Handler;
 import game.Tiles.Tile;
 import game.gfx.Assets;
 
+/**
+ * The Slime class is a basic enemy class that has the ability to move
+ * around the map at random.
+ * @author Miguel Cardenas Gustavo Chavez
+ *
+ */
 public class Slime extends Creature{
 	
+	/**
+	 * The Random variable that determines if the slime will move around
+	 */
 	private Random random;
 
+	/**
+	 * This constructor creates a slime creature at the given 
+	 * x and y position in tixels, and sets its hitbox and speed
+	 * @param handler
+	 * 	The main handler
+	 * @param x
+	 * 	This entity's x position in tixels
+	 * @param y
+	 * 	This entity's y position in tixels
+	 */
 	public Slime(Handler handler, float x, float y) {
 		
 		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, DEFAULT_CREATURE_HEIGHT);
@@ -24,6 +43,10 @@ public class Slime extends Creature{
 		this.speed = 10.0f; //20.0f;
 	}
 
+	/**
+	 * Updates the slime by calling the getInput() function
+	 * and moves it around the map accordingly.
+	 */
 	public void update() {
 		
 		getInput();
@@ -32,6 +55,10 @@ public class Slime extends Creature{
 		handler.getGameCamera();
 	}
 
+	/**
+	 * Sets the random variable and determines what direction the 
+	 * slime will move
+	 */
 	public void getInput() {
 		
 		xMove = 0;
@@ -51,6 +78,13 @@ public class Slime extends Creature{
 		}
 		
 	}
+	
+	/**
+	 * Renders the slime onto the screen uses the gameCamera's position to
+	 * determine where to draw the creature.
+	 * @param g
+	 * 	The graphics object that is used to draw the creature
+	 */
 	public void render(Graphics g) {
 		
 		int posX = (int) (x - handler.getGameCamera().getxOffset());
