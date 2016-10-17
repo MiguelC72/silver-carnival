@@ -6,7 +6,7 @@ import game.worlds.World;
 
 /**
  * This handler class is only used to make getting specific
- * variables from other classes easier.
+ * variables from other classes easier. 
  * @author Miguel Cardenas Gustavo Chavez
  *
  */
