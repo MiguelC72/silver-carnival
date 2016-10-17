@@ -98,4 +98,10 @@ public class Slime extends Creature{
 		//		, (int) (y + bounds.y - handler.getGameCamera().getyOffset()), bounds.width, bounds.height);
 	}
 
+	@Override
+	public void die() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

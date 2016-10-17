@@ -15,10 +15,7 @@ import game.entities.Entity;
  */
 public abstract class Creature extends Entity{
 
-	/**
-	 * Default health
-	 */
-	public static final int DEFAULT_HEALTH = 10;
+	
 	/**
 	 * Default speed
 	 */
@@ -28,10 +25,7 @@ public abstract class Creature extends Entity{
 	 */
 	public static final int DEFAULT_CREATURE_WIDTH = 40,
 							DEFAULT_CREATURE_HEIGHT = 40;
-	/**
-	 * The health of any respective creature
-	 */
-	protected int health;
+	
 	/**
 	 * The speed at which the creature move on the overworld
 	 */
@@ -60,7 +54,6 @@ public abstract class Creature extends Entity{
 		
 		super(handler, x, y, width, height); // passes these variables to the Entity constructor
 		
-		health = DEFAULT_HEALTH;
 		speed = DEFAULT_SPEED;
 		xMove = 0;
 		yMove = 0;

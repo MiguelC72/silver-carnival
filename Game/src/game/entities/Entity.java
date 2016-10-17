@@ -28,9 +28,17 @@ public abstract class Entity {
 	 */
 	protected int width, height;
 	/**
-	 * The entity's hitbox
+	 * The entity's hitbox, for entities other than the player, this will also be the attackbox
 	 */
 	protected Rectangle bounds;
+	/**
+	 * Default health
+	 */
+	public static final int DEFAULT_HEALTH = 10;
+	/**
+	 * The health of any respective creature
+	 */
+	protected int health;
 	
 	/**
 	 * Constructs an entity object setting its variables and 
@@ -56,6 +64,8 @@ public abstract class Entity {
 		this.height = height;	// Entity's height
 		
 		bounds = new Rectangle(0, 0, width, height);
+		
+		health = DEFAULT_HEALTH;
 	}
 	
 	/**
@@ -91,6 +101,7 @@ public abstract class Entity {
 		}
 		return false;
 	}
+	
 	/**
 	 * Takes the entity that called it, and returns a 
 	 * rectangle object that represents its hitbox
@@ -110,6 +121,16 @@ public abstract class Entity {
 	public Rectangle getCollisionBounds(float xOffset, float yOffset) {
 		return new Rectangle((int) (x + bounds.x + xOffset)
 				, (int) (y + bounds.y + yOffset), bounds.width, bounds.height);
+	}
+	
+	public abstract void die();
+	
+	public void hurt() {
+		System.out.println("staph");
+		if  (health > 0)
+			health--;
+		else 
+			die();
 	}
 	
 	// Getters and Setters

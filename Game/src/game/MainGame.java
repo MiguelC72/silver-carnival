@@ -8,6 +8,7 @@ import game.display.Display;
 import game.gfx.Assets;
 import game.gfx.GameCamera;
 import game.states.Game;
+import game.states.GameOver;
 import game.states.Settings;
 import game.states.State;
 import game.states.Title;
@@ -91,6 +92,10 @@ public class MainGame implements Runnable {
 	 * Contains the title's state
 	 */
 	private State titleState;
+	/**
+	 * Contains the game over state
+	 */
+	private State gameOverState;
 	
 	/**
 	 * Constructs the MainGame object, and sets the default values of the window
@@ -181,6 +186,7 @@ public class MainGame implements Runnable {
 		gameState = new Game(handler);
 		settingsState = new Settings(handler);
 		titleState = new Title(handler);
+		gameOverState = new GameOver(handler);
 		State.setState(gameState);
 	}
 	
@@ -316,6 +322,14 @@ public class MainGame implements Runnable {
 	 */
 	public State getSettingsState() {
 		return settingsState;
+	}
+	/**
+	 * Returns the game over state
+	 * @return
+	 * 	The gameOverState
+	 */
+	public State getGameOverState() {
+		return gameOverState;
 	}
 
 	

@@ -53,4 +53,11 @@ public class Mouse extends Creature{
 		g.drawImage(Assets.mouse, (int) (x - handler.getGameCamera().getxOffset())
 				, (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
 	}
+
+	@Override
+	public void die() {
+		handler.getWorld().getEntityManager().getEntities().remove(this);
+		
+	}
+	
 }
