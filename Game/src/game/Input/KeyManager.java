@@ -9,8 +9,6 @@ public class KeyManager implements KeyListener {
 	
 	public boolean up, down, left, right, space, pause;
 	
-	
-	
 	public KeyManager() {
 		keys = new boolean[256];
 	}

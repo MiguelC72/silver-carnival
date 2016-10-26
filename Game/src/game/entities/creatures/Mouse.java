@@ -56,7 +56,7 @@ public class Mouse extends Creature{
 
 	@Override
 	public void die() {
-		handler.getWorld().getEntityManager().getEntities().remove(this);
+		System.out.println("Mouse Slain");
 		
 	}
 	

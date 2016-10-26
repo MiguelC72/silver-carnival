@@ -1,14 +1,19 @@
 package game.states;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
 import game.Handler;
+import game.gfx.ImageLoader;
 
 public class GameOver extends State {
 
+	public BufferedImage img;
+	
 	public GameOver(Handler handler) {
 		super(handler);
-		
+		img = ImageLoader.loadImage("/textures/testGameOver.png");
 	}
 
 	@Override
@@ -19,7 +24,9 @@ public class GameOver extends State {
 
 	@Override
 	public void render(Graphics g) {
-		System.out.println("kys");
+		g.setColor(Color.RED);
+		g.fillRect(0, 0, handler.getWidth(), handler.getHeight());
+		g.drawImage(img, 0, 0, handler.getWidth(), handler.getHeight(), null);
 		
 	}
 

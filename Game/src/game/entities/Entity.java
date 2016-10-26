@@ -39,6 +39,11 @@ public abstract class Entity {
 	 * The health of any respective creature
 	 */
 	protected int health;
+	/**
+	 * Determines whether or not the entity is alive. (if not it won't be rendered)
+	 */
+	protected boolean alive = true;
+	protected boolean isPlayer = false;
 	
 	/**
 	 * Constructs an entity object setting its variables and 
@@ -62,10 +67,11 @@ public abstract class Entity {
 		this.y = y;				// Entity's y position
 		this.width = width;		// Entity's width
 		this.height = height;	// Entity's height
+		health = DEFAULT_HEALTH;
 		
 		bounds = new Rectangle(0, 0, width, height);
 		
-		health = DEFAULT_HEALTH;
+		
 	}
 	
 	/**
@@ -96,8 +102,11 @@ public abstract class Entity {
 				continue;
 			
 			// check if the current entity e's hitbox intersects with this entity's next x/y move location
-			if (e.getCollisionBounds(0f,  0f).intersects(getCollisionBounds(xOffset, yOffset)))
+			if (e.getCollisionBounds(0f,  0f).intersects(getCollisionBounds(xOffset, yOffset))) {
+				if (e.isPlayer)
+					e.hurt();
 				return true;
+			}
 		}
 		return false;
 	}
@@ -126,11 +135,11 @@ public abstract class Entity {
 	public abstract void die();
 	
 	public void hurt() {
-		System.out.println("staph");
-		if  (health > 0)
-			health--;
-		else 
+		health--;
+		if  (health <= 0) {
+			alive = false;
 			die();
+		}
 	}
 	
 	// Getters and Setters
@@ -198,6 +207,22 @@ public abstract class Entity {
 	 */
 	public void setHeight(int height) {
 		this.height = height;
+	}
+
+	public int getHealth() {
+		return health;
+	}
+
+	public void setHealth(int health) {
+		this.health = health;
+	}
+
+	public boolean isAlive() {
+		return alive;
+	}
+
+	public void setAlive(boolean alive) {
+		this.alive = alive;
 	}
 	
 	

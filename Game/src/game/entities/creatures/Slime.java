@@ -40,7 +40,7 @@ public class Slime extends Creature{
 		bounds.width = 25;
 		bounds.height = 20;
 		random = new Random();
-		this.speed = 10.0f; //20.0f;
+		this.speed = 2.0f; //20.0f;
 	}
 
 	/**
@@ -64,17 +64,36 @@ public class Slime extends Creature{
 		xMove = 0;
 		yMove = 0;
 		
-		int i = random.nextInt(700) + 1;
+		float playerX = handler.getWorld().getEntityManager().getPlayer().getX();
+		float playerY = handler.getWorld().getEntityManager().getPlayer().getY();
 		
-		if (i <= 100) {
-			if (i >= 0 && i <= 24)
-				yMove = -speed;
-			if (i >= 25 && i <= 49)
-				yMove = speed;
-			if (i >= 50 && i <= 74)
-				xMove = -speed;
-			if (i >= 75 && i <= 100)
-				xMove = speed;
+		double distance = Math.hypot(x - playerX , y - playerY);
+		
+		if (distance <= 4 * Tile.TILEWIDTH) 
+		{
+			System.out.println("noticed");
+			if (x < playerX)
+			    xMove = speed;
+			else if (x > playerX)
+			    xMove = -speed;
+
+			if (y < playerY)
+			    yMove = speed;
+			else if (y > playerY)
+			    yMove = -speed;
+		} else {
+			int i = random.nextInt(700) + 1;
+		
+			if (i <= 100) {
+				if (i >= 0 && i <= 24)
+					yMove = -speed;
+				if (i >= 25 && i <= 49)
+					yMove = speed;
+				if (i >= 50 && i <= 74)
+					xMove = -speed;
+				if (i >= 75 && i <= 100)
+					xMove = speed;
+			}
 		}
 		
 	}
@@ -100,7 +119,7 @@ public class Slime extends Creature{
 
 	@Override
 	public void die() {
-		// TODO Auto-generated method stub
+		System.out.println("Slime Slain");
 		
 	}
 

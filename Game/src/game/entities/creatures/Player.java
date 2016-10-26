@@ -21,11 +21,6 @@ public class Player extends Creature {
 	public char lastDirection;
 	
 	/**
-	 * The player's attackBox
-	 */
-	public Rectangle attackBox;
-	
-	/**
 	 * Creates the player creature and sets its position 
 	 * based on the passed parameters.
 	 * Also sets up the character's hitbox.
@@ -45,8 +40,7 @@ public class Player extends Creature {
 		bounds.width = 20;
 		bounds.height = 20;
 		
-		attackBox = new Rectangle();
-		
+		isPlayer = true;
 	}
 
 	/**
@@ -59,6 +53,10 @@ public class Player extends Creature {
 		move();
 		
 		handler.getGameCamera().centerOnEntity(this);
+		
+		if (handler.getKeyManager().space) {
+			attk();
+		}
 	}
 	
 	/**
@@ -86,38 +84,39 @@ public class Player extends Creature {
 			lastDirection = 'r';
 		} 
 		
-		if (handler.getKeyManager().space) {
-			attackBox = new Rectangle();
-			System.out.println("lmao");
-			attk();
-		}
 	}
 	
 	public void attk() {
+		Rectangle c = getCollisionBounds(0, 0);
+		Rectangle attackBox = new Rectangle();
+		int sz = 20;
+		attackBox.width = sz;
+		attackBox.height = sz;
+		
 		if (lastDirection == 'u') {
-			attackBox.x = bounds.x;
-			attackBox.y = -bounds.y;
-			attackBox.width = 20;
-			attackBox.height = 25;
+			attackBox.x = c.x + c.width / 2 - sz / 2;
+			attackBox.y = c.y - sz;
 		} else if (lastDirection == 'd') {
-			attackBox.x = bounds.x;
-			attackBox.y = bounds.height + bounds.y;
-			attackBox.width = 20;
-			attackBox.height = 25;
+			attackBox.x = c.x + c.width / 2 - sz / 2;
+			attackBox.y = c.y + c.height;
 		} else if (lastDirection == 'l') {
-			attackBox.x = -bounds.x;
-			attackBox.y = bounds.y;
-			attackBox.width = 25;
-			attackBox.height = 20;
+			attackBox.x = c.x - sz;
+			attackBox.y = c.y + c.height / 2 - sz / 2;
 		} else if (lastDirection == 'r') {
-			attackBox.x = bounds.width + bounds.x;
-			attackBox.y = bounds.y;
-			attackBox.width = 25;
-			attackBox.height = 20;
+			attackBox.x = c.x + c.width;
+			attackBox.y = c.y + c.height / 2 - sz / 2;
 		} else {
 			return;
 		}
-		checkAttackCollisions();
+
+		for(Entity e : handler.getWorld().getEntityManager().getEntities()) {
+			if (e.equals(this))
+				continue;
+			
+			if (e.getCollisionBounds(0, 0).intersects(attackBox)) {
+				e.hurt();
+			}
+		}
 	}
 	
 	/**
@@ -130,10 +129,10 @@ public class Player extends Creature {
 		g.drawImage(Assets.player, (int) (x - handler.getGameCamera().getxOffset())
 				, (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
 		
-		// draws a bounding box
+		// draws a health box
 		g.setColor(Color.red);
-		g.fillRect((int) (x + attackBox.x - handler.getGameCamera().getxOffset())
-		 , (int) (y + attackBox.y - handler.getGameCamera().getyOffset()), attackBox.width, attackBox.height);
+		g.fillRect((int) (handler.getWidth() - 250)
+		 , (int) (handler.getHeight() - 70), (10 * this.health), 30);
 	}
 
 	@Override
@@ -144,24 +143,14 @@ public class Player extends Creature {
 	
 	@Override
 	public void hurt() {
-		System.out.println("lmfao");
-	}
-	
-	public void checkAttackCollisions() {
-		
-		for(Entity e : handler.getWorld().getEntityManager().getEntities()) {
-			if (e.equals(this)) // the entity is obviously going to collide with itself, ignore it
-				continue;
-			
-			
-			// check if the current entity e's hitbox intersects with this entity's next x/y move location
-			if (attackBox.intersects(e.getCollisionBounds(0f,  0f))) {
-				System.out.println("attacked");
-				e.hurt();
-			}
+		System.out.println("You took 1 damage.");
+		health--;
+		if  (health <= 0) {
+			alive = false;
+			System.out.println("You Died.");
+			die();
 		}
 	}
 
-	
 	
 }
