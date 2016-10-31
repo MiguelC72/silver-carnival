@@ -1,6 +1,7 @@
 package game;
 
 import game.Input.KeyManager;
+import game.Input.MouseManager;
 import game.gfx.GameCamera;
 import game.worlds.World;
 
@@ -53,6 +54,14 @@ public class Handler {
 	 */
 	public KeyManager getKeyManager() {
 		return mainGame.getKeyManager();
+	}
+	/**
+	 * Returns the mainGame mouseManager
+	 * @return
+	 * The mainGame mouseManager
+	 */
+	public MouseManager getMouseManager() {
+		return mainGame.getMouseManager();
 	}
 	/**
 	 * Return the mainGame camera

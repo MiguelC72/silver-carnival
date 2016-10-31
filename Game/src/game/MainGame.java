@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 import game.Input.KeyManager;
+import game.Input.MouseManager;
 import game.display.Display;
 import game.gfx.Assets;
 import game.gfx.GameCamera;
@@ -42,6 +43,8 @@ public class MainGame implements Runnable {
 	 * The main key manager
 	 */
 	private KeyManager keyManager;
+	
+	private MouseManager mouseManager;
 	
 	// Camera
 	/**
@@ -113,7 +116,7 @@ public class MainGame implements Runnable {
 		this.height = height;
 		
 		keyManager = new KeyManager();
-		
+		mouseManager = new MouseManager();
 	}
 	
 	/**
@@ -124,13 +127,16 @@ public class MainGame implements Runnable {
 	 */
 	private void update() {
 		keyManager.update();
-		if (keyManager.pause)
-			State.setState(settingsState);
-		else if (State.getState() == gameOverState)
-			State.setState(gameOverState);
-		else
-			State.setState(gameState);
-		
+		if (State.getState() == titleState){
+			State.setState(titleState);
+		} else {
+			if (keyManager.pause)
+				State.setState(settingsState);
+			else if (State.getState() == gameOverState)
+				State.setState(gameOverState);
+			else
+				State.setState(gameState);
+		}
 		if (State.getState() != null) {
 			State.getState().update();
 		}
@@ -189,7 +195,7 @@ public class MainGame implements Runnable {
 		settingsState = new Settings(handler);
 		titleState = new Title(handler);
 		gameOverState = new GameOver(handler);
-		State.setState(gameState);
+		State.setState(titleState);
 	}
 	
 	/**
@@ -284,6 +290,10 @@ public class MainGame implements Runnable {
 	 */
 	public KeyManager getKeyManager() {
 		return keyManager;
+	}
+	
+	public MouseManager getMouseManager() {
+		return mouseManager;
 	}
 	/**
 	 * Returns the MainGame camera

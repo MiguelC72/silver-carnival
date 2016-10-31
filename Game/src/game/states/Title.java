@@ -2,9 +2,11 @@ package game.states;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import game.Handler;
+import game.Input.MouseManager;
 import game.gfx.ImageLoader;
 
 /**
@@ -19,35 +21,58 @@ import game.gfx.ImageLoader;
 
 public class Title extends State{
 
-	//public BufferedImage img;
+	public BufferedImage img;
 	/**
 	 * Constructs a title state object and passes the handler to the main state object.
 	 * @param handler
 	 * 	The main handler
 	 */
+	Rectangle start = new Rectangle();
+	Rectangle cursor = new Rectangle();
 	public Title(Handler handler) {
 		super(handler);
-		//img = ImageLoader.loadImage("/textures/testTitle.png");
+		img = ImageLoader.loadImage("/textures/testTitle.png");
 		//create hitboxes for options
 		//TODO hitbox here
-		
+		start.width = 20;
+		start.height = 20;
+		start.x = 200;
+		start.y = 200;
 	}
 	
 	/**
 	 * The update method, currently does nothing
 	 */
 	public void update() {
-		
-		
+		if (checkClick(start)){
+			State.setState(handler.getGame().getGameState());
+		}
+	}
+	
+	public boolean checkClick(Rectangle check){
+		Rectangle cursor = new Rectangle();
+		cursor.x = handler.getMouseManager().getX();
+		cursor.y = handler.getMouseManager().getY();
+		cursor.width = 1;
+		cursor.height = 1;
+		if (cursor.intersects(check) && handler.getMouseManager().isLeft()){
+			return true;
+		}
+		else
+			return false;
 	}
 
 	/**
 	 * The render method, currently does nothing
 	 */
 	public void render(Graphics g) {
-		/*g.setColor(Color.BLUE);
+		//Draw title screen background
+		g.setColor(Color.BLUE);
 		g.fillRect(0, 0, handler.getWidth(), handler.getHeight());
-		g.drawImage(img, 0, 0, handler.getWidth(), handler.getHeight(), null);*/
+		g.drawImage(img, 0, 0, handler.getWidth(), handler.getHeight(), null);
+		//Draw start rectangle
+		g.setColor(Color.BLACK);
+		g.fillRect(start.x, start.y, start.width, start.height);
 	}
 	
 }

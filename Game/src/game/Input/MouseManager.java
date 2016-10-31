@@ -47,6 +47,7 @@ public class MouseManager implements MouseListener{
 	}
 
 	//Getters and setters
+	
 	public boolean isLeft() {
 		return left;
 	}
