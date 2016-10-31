@@ -291,7 +291,11 @@ public class MainGame implements Runnable {
 	public KeyManager getKeyManager() {
 		return keyManager;
 	}
-	
+	/**
+	 * Returns the MainGame mouseManager
+	 * @return
+	 * The mouseManager
+	 */
 	public MouseManager getMouseManager() {
 		return mouseManager;
 	}

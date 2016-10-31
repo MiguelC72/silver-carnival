@@ -58,7 +58,7 @@ public class Handler {
 	/**
 	 * Returns the mainGame mouseManager
 	 * @return
-	 * The mainGame mouseManager
+	 * The mainGame mouseManager WOW
 	 */
 	public MouseManager getMouseManager() {
 		return mainGame.getMouseManager();

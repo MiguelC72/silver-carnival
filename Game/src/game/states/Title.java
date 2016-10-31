@@ -66,7 +66,7 @@ public class Title extends State{
 	 * The render method, currently does nothing
 	 */
 	public void render(Graphics g) {
-		//Draw title screen background
+		//Draw title screen background WOW
 		g.setColor(Color.BLUE);
 		g.fillRect(0, 0, handler.getWidth(), handler.getHeight());
 		g.drawImage(img, 0, 0, handler.getWidth(), handler.getHeight(), null);
