@@ -2,15 +2,20 @@ package game.Input;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
-public class MouseManager implements MouseListener{
+public class MouseManager implements MouseMotionListener, MouseListener{
 	
 	public boolean left, right;
-	int x, y;
-
+	private int x, y;
+	
+	public MouseManager() {
+		
+	}
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		//Nothing needed here
+		
 	}
 
 	@Override
@@ -23,39 +28,39 @@ public class MouseManager implements MouseListener{
 		//Nothing needed here
 	}
 	
-	public void mouseMoved(MouseEvent e) {
-		x = e.getX();
-		y = e.getY();
-	}
+	
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		if (e.getButton() == MouseEvent.BUTTON1){
+		if (e.getButton() == MouseEvent.BUTTON1)
 			left = true;
-		} if (e.getButton() == MouseEvent.BUTTON3){
+		else if (e.getButton() == MouseEvent.BUTTON3)
 			right = true;
-		}
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		if (e.getButton() == MouseEvent.BUTTON1){
+		if (e.getButton() == MouseEvent.BUTTON1)
 			left = false;
-		} if (e.getButton() == MouseEvent.BUTTON3){
+		else if (e.getButton() == MouseEvent.BUTTON3)
 			right = false;
-		}
+		
+	}
+	
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		x = e.getX();
+		y = e.getY();
+	}
+	
+	@Override
+	public void mouseDragged(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	//Getters and setters WOW NICE
 	
-	public boolean isLeft() {
-		return left;
-	}
-	
-	public boolean isRight() {
-		return right;
-	}
-
 	public int getX() {
 		return x;
 	}

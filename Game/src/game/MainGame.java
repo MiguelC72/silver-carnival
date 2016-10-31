@@ -185,6 +185,10 @@ public class MainGame implements Runnable {
 		
 		display = new Display(title, width, height);
 		display.getFrame().addKeyListener(keyManager);
+		display.getFrame().addMouseMotionListener(mouseManager);
+		display.getFrame().addMouseListener(mouseManager);
+		display.getCanvas().addMouseMotionListener(mouseManager);
+		display.getCanvas().addMouseListener(mouseManager);
 		Assets.init();
 		
 		handler = new Handler(this);

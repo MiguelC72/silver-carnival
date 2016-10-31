@@ -51,11 +51,14 @@ public class Title extends State{
 	
 	public boolean checkClick(Rectangle check){
 		Rectangle cursor = new Rectangle();
+		//cursor.x = 1;
+		//cursor.y = 1;
 		cursor.x = handler.getMouseManager().getX();
 		cursor.y = handler.getMouseManager().getY();
 		cursor.width = 1;
 		cursor.height = 1;
-		if (cursor.intersects(check) && handler.getMouseManager().isLeft()){
+		System.out.println("mouse("+cursor.x+", "+cursor.y+")");
+		if (cursor.intersects(check) && handler.getMouseManager().left){
 			return true;
 		}
 		else
