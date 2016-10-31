@@ -1,6 +1,5 @@
 package game.entities.creatures;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
 
@@ -20,6 +19,8 @@ public class Slime extends Creature{
 	 * The Random variable that determines if the slime will move around
 	 */
 	private Random random;
+	
+	private int sleep = 0, direction = 5;
 
 	/**
 	 * This constructor creates a slime creature at the given 
@@ -72,27 +73,44 @@ public class Slime extends Creature{
 		if (distance <= 4 * Tile.TILEWIDTH) 
 		{
 			System.out.println("noticed");
-			if (x < playerX)
-			    xMove = speed;
-			else if (x > playerX)
-			    xMove = -speed;
-
-			if (y < playerY)
-			    yMove = speed;
-			else if (y > playerY)
-			    yMove = -speed;
-		} else {
-			int i = random.nextInt(700) + 1;
+			if (sleep < 15) {
+				sleep++;
+			} else {
+				if (sleep < 30) {
+					sleep++;
+					if (x < playerX)
+					    xMove = speed;
+					else if (x > playerX)
+					    xMove = -speed;
 		
-			if (i <= 100) {
-				if (i >= 0 && i <= 24)
-					yMove = -speed;
-				if (i >= 25 && i <= 49)
-					yMove = speed;
-				if (i >= 50 && i <= 74)
-					xMove = -speed;
-				if (i >= 75 && i <= 100)
-					xMove = speed;
+					if (y < playerY)
+					    yMove = speed;
+					else if (y > playerY)
+					    yMove = -speed;
+				} else {
+					sleep = 0;
+				}
+			}
+		} else {
+			if (sleep < 15) {
+				sleep++;
+				direction = random.nextInt(4);
+			} else {
+				if (sleep < 30) {
+					sleep++;
+					if (direction == 0)
+						xMove = -speed;
+					else if (direction == 1)
+						xMove = speed;
+					else if (direction == 2)
+						yMove = -speed;
+					else if (direction == 3)
+						yMove = speed;
+					else
+						direction = random.nextInt(4);
+				} else {
+					sleep = 0;
+				}
 			}
 		}
 		

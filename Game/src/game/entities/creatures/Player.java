@@ -129,10 +129,13 @@ public class Player extends Creature {
 		g.drawImage(Assets.player, (int) (x - handler.getGameCamera().getxOffset())
 				, (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
 		
-		// draws a health box
+		// draws a border box and health box
+		g.setColor(Color.black);
+		g.fillRect((int) (handler.getWidth() - 255)
+				, (int) (handler.getHeight() - 75), (10 * this.DEFAULT_HEALTH) + 10, 40);
 		g.setColor(Color.red);
 		g.fillRect((int) (handler.getWidth() - 250)
-		 , (int) (handler.getHeight() - 70), (10 * this.health), 30);
+				, (int) (handler.getHeight() - 70), (10 * this.health), 30);
 	}
 
 	@Override
