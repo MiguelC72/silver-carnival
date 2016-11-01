@@ -14,6 +14,7 @@ public class Tile {
 	public static Tile treeTile = new TreeTile(3);
 	public static Tile caveEnt = new CaveEnterTile(4);
 	public static Tile caveFloor = new CaveFloorTile(5);
+	public static Tile rockTile = new RockTile(6);
 	
 	// CLASS
 	
