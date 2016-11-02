@@ -72,7 +72,7 @@ public class Slime extends Creature{
 		
 		if (distance <= 4 * Tile.TILEWIDTH) 
 		{
-			System.out.println("noticed");
+			//System.out.println("noticed");
 			if (sleep < 15) {
 				sleep++;
 			} else {

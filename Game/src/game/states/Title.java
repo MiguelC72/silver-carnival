@@ -57,7 +57,6 @@ public class Title extends State{
 		cursor.y = handler.getMouseManager().getY();
 		cursor.width = 1;
 		cursor.height = 1;
-		System.out.println("mouse("+cursor.x+", "+cursor.y+")");
 		if (cursor.intersects(check) && handler.getMouseManager().left){
 			return true;
 		}

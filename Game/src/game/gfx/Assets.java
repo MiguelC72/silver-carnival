@@ -37,7 +37,7 @@ public class Assets {
 		cE1 = sheet.crop(0, height, width, height);
 		cFloor = sheet.crop(width, height, width, height);
 		camera = sheet.crop(width * 4, 0, width, height);
-		//Finds a creature shweet from resources folder
+		//Finds a creature sheet from resources folder
 		SpriteSheet sheet2 = new SpriteSheet(ImageLoader.loadImage("/textures/creatureSheet.png"));
 		//Grab each sprite from the sheet and apply to each creature variable
 		slime = sheet2.crop(0, 0, width, height);
