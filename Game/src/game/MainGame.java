@@ -130,12 +130,14 @@ public class MainGame implements Runnable {
 		if (State.getState() == titleState){
 			State.setState(titleState);
 		} else {
-			if (keyManager.pause)
-				State.setState(settingsState);
-			else if (State.getState() == gameOverState)
+			if (State.getState() == gameOverState)
 				State.setState(gameOverState);
-			else
-				State.setState(gameState);
+			else {
+				if (keyManager.pause)
+					State.setState(settingsState); 
+				else
+					State.setState(gameState);
+			}
 		}
 		if (State.getState() != null) {
 			State.getState().update();

@@ -4,11 +4,13 @@ import java.awt.Graphics;
 import java.util.Random;
 
 import game.Handler;
+import game.Tiles.Tile;
 import game.gfx.Assets;
 //Random
 public class Mouse extends Creature{
 	
 	private Random random;
+	private int sleep = 0, direction = 5;
 	
 	public Mouse(Handler handler, float x, float y) {
 		super(handler, x, y, DEFAULT_CREATURE_WIDTH, DEFAULT_CREATURE_HEIGHT);
@@ -18,7 +20,7 @@ public class Mouse extends Creature{
 		bounds.width = 25;
 		bounds.height = 20;
 		random = new Random();
-		this.speed = 10.0f; //20.0f;
+		this.speed = 3.0f; //20.0f;
 	}
 	
 	public void update() {
@@ -34,19 +36,45 @@ public class Mouse extends Creature{
 		xMove = 0;
 		yMove = 0;
 		
-		int i = random.nextInt(700) + 1;
+		float playerX = handler.getWorld().getEntityManager().getPlayer().getX();
+		float playerY = handler.getWorld().getEntityManager().getPlayer().getY();
 		
-		if (i <= 100) {
-			if (i >= 0 && i <= 24)
-				yMove = -speed;
-			if (i >= 25 && i <= 49)
-				yMove = speed;
-			if (i >= 50 && i <= 74)
-				xMove = -speed;
-			if (i >= 75 && i <= 100)
-				xMove = speed;
+		double distance = Math.hypot(x - playerX , y - playerY);
+		
+		if (distance <= 4 * Tile.TILEWIDTH) 
+		{
+			//System.out.println("noticed");
+			if (x < playerX)
+			    xMove = speed;
+			else if (x > playerX)
+			    xMove = -speed;
+
+			if (y < playerY)
+			    yMove = speed;
+			else if (y > playerY)
+			    yMove = -speed;
+		} else {
+			if (sleep < 15) {
+				sleep++;
+				direction = random.nextInt(4);
+			} else {
+				if (sleep < 30) {
+					sleep++;
+					if (direction == 0)
+						xMove = -speed;
+					else if (direction == 1)
+						xMove = speed;
+					else if (direction == 2)
+						yMove = -speed;
+					else if (direction == 3)
+						yMove = speed;
+					else
+						direction = random.nextInt(4);
+				} else {
+					sleep = 0;
+				}
+			}
 		}
-		
 	}
 	public void render(Graphics g) {
 		
