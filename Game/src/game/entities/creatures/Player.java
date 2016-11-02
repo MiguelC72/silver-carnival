@@ -20,6 +20,8 @@ public class Player extends Creature {
 
 	public char lastDirection;
 	
+	private int iFrames = 0;
+	
 	/**
 	 * Creates the player creature and sets its position 
 	 * based on the passed parameters.
@@ -126,9 +128,12 @@ public class Player extends Creature {
 	 */
 	public void render(Graphics g) {
 		
-		g.drawImage(Assets.player, (int) (x - handler.getGameCamera().getxOffset())
-				, (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
-		
+		if ((iFrames % 2) == 0) {
+			g.drawImage(Assets.player, (int) (x - handler.getGameCamera().getxOffset())
+					, (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+		}
+		else
+			iFrames++;
 		// draws a border box and health box
 		g.setColor(Color.black);
 		g.fillRect((int) (handler.getWidth() - 255)
@@ -146,12 +151,17 @@ public class Player extends Creature {
 	
 	@Override
 	public void hurt() {
-		System.out.println("You took 1 damage.");
-		health--;
-		if  (health <= 0) {
-			alive = false;
-			System.out.println("You Died.");
-			die();
+		if (iFrames < 15)
+			iFrames++;
+		else {
+			System.out.println("You took 1 damage.");
+			health--;
+			if  (health <= 0) {
+				alive = false;
+				System.out.println("You Died.");
+				die();
+			}
+			iFrames = 0;
 		}
 	}
 
