@@ -2,12 +2,12 @@ package game.entities.creatures;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Rectangle;
 
 import game.Handler;
-import game.entities.Entity;
 import game.gfx.Assets;
 import game.states.State;
+import game.weapons.Dagger;
+import game.weapons.Weapon;
 
 /**
  * The Player class is the class that contains all the important 
@@ -18,9 +18,9 @@ import game.states.State;
  */
 public class Player extends Creature {
 
-	public char lastDirection;
 	
 	private int iFrames = 0;
+	private Weapon currWeap;
 	
 	/**
 	 * Creates the player creature and sets its position 
@@ -43,6 +43,7 @@ public class Player extends Creature {
 		bounds.height = 20;
 		
 		isPlayer = true;
+		currWeap = new Dagger(handler, 20, 20);
 	}
 
 	/**
@@ -71,54 +72,26 @@ public class Player extends Creature {
 		
 		if (handler.getKeyManager().up) {
 			yMove = -speed;
-			lastDirection = 'u';
+			setLastDirection('u');
 		}
 		if (handler.getKeyManager().down) {
 			yMove = speed;
-			lastDirection = 'd';
+			setLastDirection('d');
 		}
 		if (handler.getKeyManager().left) {
 			xMove = -speed;
-			lastDirection = 'l';
+			setLastDirection('l');
 		}
 		if (handler.getKeyManager().right) {
 			xMove = speed;
-			lastDirection = 'r';
+			setLastDirection('r');
 		} 
 		
 	}
 	
 	public void attk() {
-		Rectangle c = getCollisionBounds(0, 0);
-		Rectangle attackBox = new Rectangle();
-		int sz = 20;
-		attackBox.width = sz;
-		attackBox.height = sz;
+		currWeap.attk(this);
 		
-		if (lastDirection == 'u') {
-			attackBox.x = c.x + c.width / 2 - sz / 2;
-			attackBox.y = c.y - sz;
-		} else if (lastDirection == 'd') {
-			attackBox.x = c.x + c.width / 2 - sz / 2;
-			attackBox.y = c.y + c.height;
-		} else if (lastDirection == 'l') {
-			attackBox.x = c.x - sz;
-			attackBox.y = c.y + c.height / 2 - sz / 2;
-		} else if (lastDirection == 'r') {
-			attackBox.x = c.x + c.width;
-			attackBox.y = c.y + c.height / 2 - sz / 2;
-		} else {
-			return;
-		}
-
-		for(Entity e : handler.getWorld().getEntityManager().getEntities()) {
-			if (e.equals(this))
-				continue;
-			
-			if (e.getCollisionBounds(0, 0).intersects(attackBox)) {
-				e.hurt();
-			}
-		}
 	}
 	
 	/**
@@ -134,6 +107,9 @@ public class Player extends Creature {
 		}
 		else
 			iFrames++;
+		
+		currWeap.render(g);
+		
 		// draws a border box and health box
 		g.setColor(Color.black);
 		g.fillRect((int) (handler.getWidth() - 255)
@@ -164,6 +140,7 @@ public class Player extends Creature {
 			iFrames = 0;
 		}
 	}
+	
 
 	
 }

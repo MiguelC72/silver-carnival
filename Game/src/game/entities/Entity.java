@@ -42,6 +42,7 @@ public abstract class Entity {
 	/**
 	 * Determines whether or not the entity is alive. (if not it won't be rendered)
 	 */
+	private char lastDirection = 'f';
 	protected boolean alive = true;
 	protected boolean isPlayer = false;
 	
@@ -225,5 +226,13 @@ public abstract class Entity {
 		this.alive = alive;
 	}
 	
+
+	public char getLastDirection() {
+		return lastDirection;
+	}
+
+	public void setLastDirection(char c) {
+		lastDirection = c;
+	}
 	
 }
