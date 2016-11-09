@@ -6,7 +6,6 @@ public class BrickTile extends Tile {
 
 	public BrickTile(int id) {
 		super(Assets.stone, id);
-		
 	}
 	
 	@Override
