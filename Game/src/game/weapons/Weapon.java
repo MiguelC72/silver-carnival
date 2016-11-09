@@ -20,6 +20,7 @@ public abstract class Weapon {
 	protected int durability;
 	
 	
+	
 	public Weapon(Handler handler, int width, int height) {
 		
 		this.handler = handler;

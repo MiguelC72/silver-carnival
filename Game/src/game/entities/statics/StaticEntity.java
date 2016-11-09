@@ -1,5 +1,7 @@
 package game.entities.statics;
 
+import java.awt.Rectangle;
+
 import game.Handler;
 import game.entities.Entity;
 

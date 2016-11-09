@@ -19,7 +19,7 @@ public class Assets {
 	 * These are the various sprites used.
 	 */
 	public static BufferedImage player, slime, grass, stone, lava, tree, cE1, cFloor, mouse,
-		camera, rock;
+		camera, rock, chest;
 	
 	/**
 	 * This function loads and crops out sprites from the /res/textures folder
@@ -37,6 +37,7 @@ public class Assets {
 		cE1 = sheet.crop(0, height, width, height);
 		cFloor = sheet.crop(width, height, width, height);
 		camera = sheet.crop(width * 4, 0, width, height);
+		chest = sheet.crop(width * 4, 0, width, height);
 		//Finds a creature sheet from resources folder
 		SpriteSheet sheet2 = new SpriteSheet(ImageLoader.loadImage("/textures/creatureSheet.png"));
 		//Grab each sprite from the sheet and apply to each creature variable
