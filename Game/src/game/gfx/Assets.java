@@ -18,26 +18,34 @@ public class Assets {
 	/**
 	 * These are the various sprites used.
 	 */
-	public static BufferedImage player, slime, grass, stone, lava, tree, cE1, cFloor, mouse,
-		camera, rock, chest;
-	
+	//World 1 images
+	public static BufferedImage grass, stone, lava, tree, cE1, rock, stonegrass;
+	//World 2 images
+	public static BufferedImage cFloor, cRock;
+	//Player images
+	public static BufferedImage player;
+	//Enemy Images
+	public static BufferedImage slime, mouse;
+	//Static Images
+	public static BufferedImage chest;
 	/**
 	 * This function loads and crops out sprites from the /res/textures folder
 	 * and places the images in their respective bufferedImage variable
 	 */
 	public static void init() {
 		//Finds a tile sheet from resources folder
-		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/tileSheet.png"));
+		SpriteSheet world1 = new SpriteSheet(ImageLoader.loadImage("/textures/world1tileSheet.png"));
 		//Grab each sprite from sheet and apply info to each tile variable
-		rock = sheet.crop(0, 0, width, height);
-		grass = sheet.crop(width, 0, width, height);
-		stone = sheet.crop(width *2, 0, width, height);
-		lava = sheet.crop(width *3, 0, width, height);
-		tree = sheet.crop(width *4, 0, width, height);
-		cE1 = sheet.crop(0, height, width, height);
-		cFloor = sheet.crop(width, height, width, height);
-		camera = sheet.crop(width * 4, 0, width, height);
-		chest = sheet.crop(width * 4, 0, width, height);
+		rock = world1.crop(0, 0, width, height);
+		grass = world1.crop(width, 0, width, height);
+		stone = world1.crop(width *2, 0, width, height);
+		lava = world1.crop(width *3, 0, width, height);
+		tree = world1.crop(width *4, 0, width, height);
+		cE1 = world1.crop(0, height, width, height);
+		stonegrass = world1.crop(width, height, width, height);
+		SpriteSheet world2 = new SpriteSheet(ImageLoader.loadImage("/textures/world2tileSheet.png"));
+		cFloor = world2.crop(0, 0, width, height);
+		cRock = world2.crop(width, 0, width, height);
 		//Finds a creature sheet from resources folder
 		SpriteSheet sheet2 = new SpriteSheet(ImageLoader.loadImage("/textures/creatureSheet.png"));
 		//Grab each sprite from the sheet and apply to each creature variable
