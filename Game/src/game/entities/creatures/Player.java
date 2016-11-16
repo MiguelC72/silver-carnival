@@ -60,8 +60,12 @@ public class Player extends Creature {
 		
 		handler.getGameCamera().centerOnEntity(this);
 		
-		if (handler.getKeyManager().space) {
-			attk();
+		if (currWeap.getCoolDown() == -1) {
+			if (handler.getKeyManager().space) {
+				attk();
+			}
+		} else {
+			currWeap.update();
 		}
 	}
 	
@@ -116,10 +120,10 @@ public class Player extends Creature {
 		// draws a border box and health box
 		g.setColor(Color.black);
 		g.fillRect((int) (handler.getWidth() - 255)
-				, (int) (handler.getHeight() - 75), (10 * this.DEFAULT_HEALTH) + 10, 40);
+				, (int) (handler.getHeight() - 75), (5 * this.DEFAULT_HEALTH) + 10, 40);
 		g.setColor(Color.red);
 		g.fillRect((int) (handler.getWidth() - 250)
-				, (int) (handler.getHeight() - 70), (10 * this.health), 30);
+				, (int) (handler.getHeight() - 70), (5 * this.health), 30);
 	}
 
 	@Override
@@ -144,6 +148,9 @@ public class Player extends Creature {
 		}
 	}
 	
+	public Weapon getCurrWeapon() {
+		return currWeap;
+	}
 
 	
 }

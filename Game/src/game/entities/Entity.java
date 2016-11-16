@@ -34,7 +34,7 @@ public abstract class Entity {
 	/**
 	 * Default health
 	 */
-	public static final int DEFAULT_HEALTH = 10;
+	public static final int DEFAULT_HEALTH = 25;
 	/**
 	 * The health of any respective creature
 	 */
@@ -136,7 +136,7 @@ public abstract class Entity {
 	public abstract void die();
 	
 	public void hurt() {
-		health--;
+		health -= handler.getWorld().getEntityManager().getPlayer().getCurrWeapon().getDamage();
 		if  (health <= 0) {
 			alive = false;
 			die();

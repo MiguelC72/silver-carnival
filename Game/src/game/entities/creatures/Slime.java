@@ -41,6 +41,7 @@ public class Slime extends Creature{
 		bounds.width = 25;
 		bounds.height = 20;
 		random = new Random();
+		health = 10;
 		this.speed = 2.0f; //20.0f;
 	}
 

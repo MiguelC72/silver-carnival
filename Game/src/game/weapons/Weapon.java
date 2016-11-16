@@ -16,6 +16,7 @@ public abstract class Weapon {
 	public static final int DEFAULT_DURABILITY = 10;
 	public static final int DEFAULT_COOLDOWN = 10;
 	protected int coolDown;
+	protected int damage;
 	protected boolean notBroken = true;
 	protected int durability;
 	
@@ -25,41 +26,45 @@ public abstract class Weapon {
 		
 		this.handler = handler;
 		durability = DEFAULT_DURABILITY;
-		coolDown = DEFAULT_COOLDOWN;
+		coolDown = -1;
 		
 		hitbox = new Rectangle(0, 0, width, height);
 		
 	}
 	
+	public abstract void update();
+	
 	public void attk(Entity e) {
 		Rectangle c = e.getCollisionBounds(0, 0);
-		
-		if (e.getLastDirection() != 'f') {
-			if (e.getLastDirection() == 'u') {
-				hitbox.x = (int) (c.x + c.width / 2 - hitbox.getWidth() / 2);
-				hitbox.y = (int) (c.y - hitbox.getHeight());
-			} else if (e.getLastDirection() == 'd') {
-				hitbox.x = (int) (c.x + c.width / 2 - hitbox.getWidth() / 2);
-				hitbox.y = c.y + c.height;
-			} else if (e.getLastDirection() == 'l') {
-				hitbox.x = (int) (c.x - hitbox.getWidth());
-				hitbox.y = (int) (c.y + c.height / 2 - hitbox.getHeight() / 2);
-			} else if (e.getLastDirection() == 'r') {
-				hitbox.x = c.x + c.width;
-				hitbox.y = (int) (c.y + c.height / 2 - hitbox.getHeight() / 2);
-			} else {
-				return;
+		if (coolDown == -1) {
+			if (e.getLastDirection() != 'f') {
+				if (e.getLastDirection() == 'u') {
+					hitbox.x = (int) (c.x + c.width / 2 - hitbox.getWidth() / 2);
+					hitbox.y = (int) (c.y - hitbox.getHeight());
+				} else if (e.getLastDirection() == 'd') {
+					hitbox.x = (int) (c.x + c.width / 2 - hitbox.getWidth() / 2);
+					hitbox.y = c.y + c.height;
+				} else if (e.getLastDirection() == 'l') {
+					hitbox.x = (int) (c.x - hitbox.getWidth());
+					hitbox.y = (int) (c.y + c.height / 2 - hitbox.getHeight() / 2);
+				} else if (e.getLastDirection() == 'r') {
+					hitbox.x = c.x + c.width;
+					hitbox.y = (int) (c.y + c.height / 2 - hitbox.getHeight() / 2);
+				} else {
+					return;
+				}
 			}
-		}
-
-		for(Entity ent : handler.getWorld().getEntityManager().getEntities()) {
-			if (ent.equals(e))
-				continue;
-			
-			if (ent.getCollisionBounds(0, 0).intersects(hitbox)) {
-				ent.hurt();
+	
+			for(Entity ent : handler.getWorld().getEntityManager().getEntities()) {
+				if (ent.equals(e))
+					continue;
+				
+				if (ent.getCollisionBounds(0, 0).intersects(hitbox)) {
+					ent.hurt();
+				}
 			}
-		}
+			coolDown = DEFAULT_COOLDOWN;
+		} 
 	}
 	
 	public abstract void die();
@@ -77,9 +82,27 @@ public abstract class Weapon {
 		// draws a border box and durability box
 		g.setColor(Color.black);
 		g.fillRect((int) (handler.getWidth() - 455)
-				, (int) (handler.getHeight() - 75), (10 * this.DEFAULT_DURABILITY) + 10, 40);
+				, (int) (handler.getHeight() - 75), (10 * this.DEFAULT_DURABILITY) + 10, 25);
 		g.setColor(Color.green);
 		g.fillRect((int) (handler.getWidth() - 450)
-				, (int) (handler.getHeight() - 70), (10 * this.durability), 30);
+				, (int) (handler.getHeight() - 70), (10 * this.durability), 15);
+		
+		// draws a border box and the weapon's cooldown if it's on cooldown
+		if (coolDown != -1) {
+			g.setColor(Color.black);
+			g.fillRect((int) (handler.getWidth() - 455)
+					, (int) (handler.getHeight() - 55), (10 * this.DEFAULT_COOLDOWN) + 10, 25);
+			g.setColor(Color.blue);
+			g.fillRect((int) (handler.getWidth() - 450)
+					, (int) (handler.getHeight() - 50), (10 * this.coolDown), 15);
+		}
+	}
+	
+	public int getCoolDown() {
+		return coolDown;
+	}
+	
+	public int getDamage() {
+		return damage;
 	}
 }

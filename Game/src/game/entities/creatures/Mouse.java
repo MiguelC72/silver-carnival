@@ -20,6 +20,7 @@ public class Mouse extends Creature{
 		bounds.width = 25;
 		bounds.height = 20;
 		random = new Random();
+		health = 10;
 		this.speed = 3.0f; //20.0f;
 	}
 	
