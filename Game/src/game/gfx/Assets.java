@@ -28,6 +28,9 @@ public class Assets {
 	public static BufferedImage slime, mouse;
 	//Static Images
 	public static BufferedImage chest;
+	//Weapon Images
+	public static BufferedImage[] dagger = new BufferedImage[5];
+	public static BufferedImage[] longSword = new BufferedImage[5];
 	/**
 	 * This function loads and crops out sprites from the /res/textures folder
 	 * and places the images in their respective bufferedImage variable
@@ -53,6 +56,14 @@ public class Assets {
 		mouse = sheet2.crop(width, 0, width, height);
 		SpriteSheet sheet3 = new SpriteSheet(ImageLoader.loadImage("/textures/characterSheet.png"));
 		player = sheet3.crop(0, 0, width, height);
-		
+		SpriteSheet sheet4 = new SpriteSheet(ImageLoader.loadImage("/textures/objectSheet.png"));
+		chest = sheet4.crop(0, 0, width, height);
+		//Finds a weapon sheet from resources folder
+		SpriteSheet weapon = new SpriteSheet(ImageLoader.loadImage("/textures/weaponTiles.png"));
+		//Grab each sprite from the sheet and apply to each creature variable
+		for(int i = 0; i < 5; i++) {
+			dagger[i] = weapon.crop(0, (height*2)*i, (width*2), (height*2));
+			longSword[i] = weapon.crop((width*2), (height*2)*i, (width*2), (height*2));
+		}
 	}
 }

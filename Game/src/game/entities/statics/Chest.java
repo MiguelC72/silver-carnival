@@ -6,6 +6,7 @@ import java.util.Random;
 import game.Handler;
 import game.Tiles.Tile;
 import game.gfx.Assets;
+import game.weapons.LongSword;
 import game.weapons.Weapon;
 
 public class Chest extends StaticEntity {
@@ -28,13 +29,15 @@ public class Chest extends StaticEntity {
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(Assets.tree, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), null);
+		g.drawImage(Assets.chest, (int) (x - handler.getGameCamera().getxOffset())
+				, (int) (y - handler.getGameCamera().getyOffset()), null);
 		
 	}
 
 	@Override
 	public void die() {
 		itemGen.nextInt(5);
+		new LongSword(handler, 20, 20, x, y);
 		
 	}
 	

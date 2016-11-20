@@ -1,6 +1,7 @@
 package game.weapons;
 
 import game.Handler;
+import game.entities.Entity;
 
 public class Axe extends Weapon {
 
@@ -11,13 +12,19 @@ public class Axe extends Weapon {
 	}
 
 	@Override
-	public void update() {
+	public void die() {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void die() {
+	public void update(Entity e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onCoolDown() {
 		// TODO Auto-generated method stub
 		
 	}

@@ -3,6 +3,7 @@ package game.entities;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Iterator;
 
 import game.Handler;
 import game.entities.creatures.Player;
@@ -61,11 +62,12 @@ public class EntityManager {
 	 * Also sorts the ArrayList using the renderSorter
 	 */
 	public void update() {
-		for(int i = 0; i < entities.size(); i++) {
-			Entity e = entities.get(i);
+		Iterator<Entity> it = entities.iterator();
+		while(it.hasNext()) {
+			Entity e = it.next();
 			e.update();
 			if (!e.isAlive())
-				entities.remove(e);
+				it.remove();
 		}
 		entities.sort(renderSorter);
 	}

@@ -7,6 +7,7 @@ import game.Handler;
 import game.gfx.Assets;
 import game.states.State;
 import game.weapons.Dagger;
+import game.weapons.LongSword;
 import game.weapons.Weapon;
 
 /**
@@ -45,6 +46,7 @@ public class Player extends Creature {
 		
 		isPlayer = true;
 		weaponList = new Weapon[2];
+		//currWeap = new Dagger(handler, 20, 20);
 		currWeap = new Dagger(handler, 20, 20);
 		weaponList[0] = currWeap;
 	}
@@ -65,8 +67,9 @@ public class Player extends Creature {
 				attk();
 			}
 		} else {
-			currWeap.update();
+			currWeap.onCoolDown();
 		}
+		currWeap.update(this);
 	}
 	
 	/**
@@ -124,6 +127,7 @@ public class Player extends Creature {
 		g.setColor(Color.red);
 		g.fillRect((int) (handler.getWidth() - 250)
 				, (int) (handler.getHeight() - 70), (5 * this.health), 30);
+		
 	}
 
 	@Override
