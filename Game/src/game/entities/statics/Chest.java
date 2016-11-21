@@ -30,14 +30,14 @@ public class Chest extends StaticEntity {
 	@Override
 	public void render(Graphics g) {
 		g.drawImage(Assets.chest, (int) (x - handler.getGameCamera().getxOffset())
-				, (int) (y - handler.getGameCamera().getyOffset()), null);
+				, (int) (y - handler.getGameCamera().getyOffset()), Tile.TILEWIDTH, Tile.TILEHEIGHT, null);
 		
 	}
 
 	@Override
 	public void die() {
 		itemGen.nextInt(5);
-		new LongSword(handler, 20, 20, x, y);
+		handler.getWorld().getEntityManager().addWeapon(new LongSword(handler, 30, 30, x, y));
 		
 	}
 	

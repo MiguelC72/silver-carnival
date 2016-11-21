@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 import game.Handler;
-import game.MainGame;
+import game.weapons.Weapon;
 
 /**
  * The Entity class is an abstract class that is the basis
@@ -233,6 +233,11 @@ public abstract class Entity {
 
 	public void setLastDirection(char c) {
 		lastDirection = c;
+	}
+
+	public void setNewWeapon(Weapon w) {
+		// blank
+		
 	}
 	
 }

@@ -16,17 +16,11 @@ public class LongSword extends Weapon {
 		this.y = y;
 		damage = 3;
 	}
-
-	@Override
-	public void die() {
-		
-		
-	}
 	
 	@Override
 	public void update(Entity e) {
+		Rectangle c = e.getCollisionBounds(0, 0);
 		if (pickedUp) {
-			Rectangle c = e.getCollisionBounds(0, 0);
 			switch(e.getLastDirection()) {
 				case('f'):
 					return;
@@ -53,12 +47,20 @@ public class LongSword extends Weapon {
 				default:
 					attkTexture = Assets.longSword[1];
 			}
+		} else {
+			hitbox.x = (int) (x - handler.getGameCamera().getxOffset());
+			hitbox.y = (int) (y - handler.getGameCamera().getyOffset());
+			if (c.intersects(hitbox)) {
+				e.setNewWeapon(this);
+				pickedUp = true;
+			}
+				
 		}
 		
 	}
 	
 	public void onCoolDown() {
-		coolDown -= 2;
+		coolDown -= 1;
 		if (coolDown <= 0) {
 			coolDown = -1;
 			attacking = false;

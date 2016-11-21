@@ -59,7 +59,7 @@ public class World {
 		entityManager = new EntityManager(handler, new Player(handler, 100, 100));
 		entityManager.addEntity(new Slime(handler, (Tile.TILEWIDTH * 15), (Tile.TILEHEIGHT * 9)));
 		entityManager.addEntity(new Mouse(handler, (Tile.TILEWIDTH * 10), (Tile.TILEHEIGHT * 5)));
-		entityManager.addEntity(new Chest(handler, (Tile.TILEWIDTH * 10), (Tile.TILEHEIGHT * 13)));
+		entityManager.addEntity(new Chest(handler, (Tile.TILEWIDTH * 4), (Tile.TILEHEIGHT * 2)));
 		loadWorld(path);
 		
 		entityManager.getPlayer().setX(spawnX);

@@ -21,7 +21,7 @@ public class Player extends Creature {
 
 	
 	private int iFrames = 0;
-	private Weapon[] weaponList;
+	private Weapon defaultDagger;
 	private Weapon currWeap;
 	
 	/**
@@ -45,10 +45,9 @@ public class Player extends Creature {
 		bounds.height = 20;
 		
 		isPlayer = true;
-		weaponList = new Weapon[2];
-		//currWeap = new Dagger(handler, 20, 20);
+		
 		currWeap = new Dagger(handler, 20, 20);
-		weaponList[0] = currWeap;
+		defaultDagger = currWeap;
 	}
 
 	/**
@@ -156,5 +155,12 @@ public class Player extends Creature {
 		return currWeap;
 	}
 
+	@Override
+	public void setNewWeapon(Weapon w) {
+		currWeap = w;
+	}
 	
+	public void resetCurrWeap() {
+		currWeap = defaultDagger;
+	}
 }

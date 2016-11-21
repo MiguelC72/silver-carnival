@@ -7,6 +7,7 @@ import java.util.Iterator;
 
 import game.Handler;
 import game.entities.creatures.Player;
+import game.weapons.Weapon;
 
 /**
  * This class contains an ArrayList that will be used to manage all of the 
@@ -29,6 +30,8 @@ public class EntityManager {
 	 * An ArrayList containing all entities in the game, including the player entity
 	 */
 	private ArrayList<Entity> entities;
+	
+	private ArrayList<Weapon> weapons;
 	
 	/**
 	 * The renderSorter allows us to sort each entity in the ArrayList based 
@@ -54,6 +57,7 @@ public class EntityManager {
 		this.handler = handler;
 		this.player = player;
 		entities = new ArrayList<Entity>();
+		weapons = new ArrayList<Weapon>();
 		addEntity(player);
 	}
 	
@@ -69,6 +73,14 @@ public class EntityManager {
 			if (!e.isAlive())
 				it.remove();
 		}
+		
+		Iterator<Weapon> itt = weapons.iterator();
+		while(itt.hasNext()) {
+			Weapon w = itt.next();
+			w.update(player);
+			if (w.isPickedUp())
+				itt.remove();
+		}
 		entities.sort(renderSorter);
 	}
 	
@@ -81,8 +93,12 @@ public class EntityManager {
 	 */
 	public void render(Graphics g) {
 		for(Entity e : entities) {
-			e.render(g);
+			if (e != player) e.render(g);
 		}
+		for(Weapon w : weapons) {
+			w.render(g);
+		}
+		player.render(g);
 	}
 	
 	/**
@@ -92,6 +108,10 @@ public class EntityManager {
 	 */
 	public void addEntity(Entity e) {
 		entities.add(e);
+	}
+	
+	public void addWeapon(Weapon w) {
+		weapons.add(w);
 	}
 
 	// getters and setters
@@ -135,6 +155,9 @@ public class EntityManager {
 	 */
 	public ArrayList<Entity> getEntities() {
 		return entities;
+	}
+	public ArrayList<Weapon> getWeapons() {
+		return weapons;
 	}
 	/**
 	 * Sets a new ArrayList that will contain another set of entities

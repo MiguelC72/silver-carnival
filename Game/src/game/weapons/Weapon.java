@@ -52,13 +52,17 @@ public abstract class Weapon {
 				
 				if (ent.getCollisionBounds(0, 0).intersects(hitbox)) {
 					ent.hurt();
+					this.hurt();
 				}
 			}
 			coolDown = DEFAULT_COOLDOWN;
 		} 
 	}
 	
-	public abstract void die();
+	public void die() {
+		handler.getWorld().getEntityManager().getPlayer().resetCurrWeap();
+		
+	}
 	
 	public void hurt() {
 		durability--;
@@ -98,38 +102,33 @@ public abstract class Weapon {
 			g.drawImage(displayTexture, (int) (handler.getWidth() - 480)
 					, (int) (handler.getHeight() - 60), null);
 		} else {
-			render(g, (x - handler.getGameCamera().getxOffset())
-					, (y - handler.getGameCamera().getyOffset()));
+			g.drawImage(displayTexture, (int) (x - handler.getGameCamera().getxOffset())
+					, (int) (y - handler.getGameCamera().getyOffset()), null);
 		}
 	}
 	
 	public void render(Graphics g, float x, float y) {
-		if (pickedUp) {
-			if (!attacking)
-				g.drawImage(attkTexture, (int) x, (int) y, null);
-			else {
-				switch(handler.getWorld().getEntityManager().getPlayer().getLastDirection()) {
-					case('f'):
-						return;
-					case('u'):
-						g.drawImage(attkTexture, (int) x, (int) (y - 10), null);
-						break;
-					case('d'):
-						g.drawImage(attkTexture, (int) x, (int) (y + 10), null);
-						break;
-					case('l'):
-						g.drawImage(attkTexture, (int) (x - 10), (int) y, null);
-						break;
-					case('r'):
-						g.drawImage(attkTexture, (int) (x + 10), (int) y, null);
-						break;
-					default:
-						return;
-				}
-				
+		if (!attacking)
+			g.drawImage(attkTexture, (int) x, (int) y, null);
+		else {
+			switch(handler.getWorld().getEntityManager().getPlayer().getLastDirection()) {
+				case('f'):
+					return;
+				case('u'):
+					g.drawImage(attkTexture, (int) x, (int) (y - 10), null);
+					break;
+				case('d'):
+					g.drawImage(attkTexture, (int) x, (int) (y + 10), null);
+					break;
+				case('l'):
+					g.drawImage(attkTexture, (int) (x - 10), (int) y, null);
+					break;
+				case('r'):
+					g.drawImage(attkTexture, (int) (x + 10), (int) y, null);
+					break;
+				default:
+					return;
 			}
-		} else {
-			g.drawImage(displayTexture, (int) x, (int) y, null);
 		}
 	}
 	
@@ -140,5 +139,11 @@ public abstract class Weapon {
 	public int getDamage() {
 		return damage;
 	}
+	
+	public boolean isPickedUp() {
+		return pickedUp;
+	}
+	
 	public abstract void onCoolDown();
+
 }
