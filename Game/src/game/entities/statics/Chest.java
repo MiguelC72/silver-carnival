@@ -6,7 +6,11 @@ import java.util.Random;
 import game.Handler;
 import game.Tiles.Tile;
 import game.gfx.Assets;
+import game.weapons.Axe;
+import game.weapons.BallNChain;
 import game.weapons.LongSword;
+import game.weapons.Nuke;
+import game.weapons.Spear;
 import game.weapons.Weapon;
 
 public class Chest extends StaticEntity {
@@ -17,8 +21,6 @@ public class Chest extends StaticEntity {
 	public Chest(Handler handler, float x, float y) {
 		super(handler, x, y, Tile.TILEWIDTH, Tile.TILEHEIGHT);
 		health = 1;
-		// fill with weapons
-		// weaponList = { };
 	}
 
 	@Override
@@ -36,9 +38,18 @@ public class Chest extends StaticEntity {
 
 	@Override
 	public void die() {
-		itemGen.nextInt(5);
-		handler.getWorld().getEntityManager().addWeapon(new LongSword(handler, 30, 30, x, y));
-		
+		int random = itemGen.nextInt(101);
+		if (random <= 45)
+			handler.getWorld().getEntityManager().addWeapon(new LongSword(handler, Tile.TILEWIDTH, Tile.TILEHEIGHT, x, y));
+		else if (random <= 76 && random >= 46)
+			handler.getWorld().getEntityManager().addWeapon(new Spear(handler, Tile.TILEWIDTH, Tile.TILEHEIGHT, x, y));
+		else if (random <= 89 && random >= 77)
+			handler.getWorld().getEntityManager().addWeapon(new BallNChain(handler, Tile.TILEWIDTH, Tile.TILEHEIGHT, x, y));
+		else if (random <= 99 && random >= 90)
+			handler.getWorld().getEntityManager().addWeapon(new Axe(handler, Tile.TILEWIDTH, Tile.TILEHEIGHT, x, y));
+		else {
+			System.out.println("The chest was empty!");
+		}
 	}
 	
 	@Override

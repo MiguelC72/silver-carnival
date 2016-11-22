@@ -60,7 +60,7 @@ public class Dagger extends Weapon {
 	}
 	
 	public void onCoolDown() {
-		coolDown -= 2;
+		coolDown -= 5;
 		if (coolDown <= 0) {
 			coolDown = -1;
 			attacking = false;

@@ -77,6 +77,7 @@ public class EntityManager {
 		Iterator<Weapon> itt = weapons.iterator();
 		while(itt.hasNext()) {
 			Weapon w = itt.next();
+			
 			w.update(player);
 			if (w.isPickedUp())
 				itt.remove();

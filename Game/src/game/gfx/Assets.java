@@ -31,6 +31,9 @@ public class Assets {
 	//Weapon Images
 	public static BufferedImage[] dagger = new BufferedImage[5];
 	public static BufferedImage[] longSword = new BufferedImage[5];
+	public static BufferedImage[] axe = new BufferedImage[5];
+	public static BufferedImage[] ballNChain = new BufferedImage[2];
+	public static BufferedImage[] spear = new BufferedImage[5];
 	/**
 	 * This function loads and crops out sprites from the /res/textures folder
 	 * and places the images in their respective bufferedImage variable
@@ -64,6 +67,10 @@ public class Assets {
 		for(int i = 0; i < 5; i++) {
 			dagger[i] = weapon.crop(0, (height*2)*i, (width*2), (height*2));
 			longSword[i] = weapon.crop((width*2), (height*2)*i, (width*2), (height*2));
+			axe[i] = weapon.crop((width*4), (height*2)*i, (width*2), (height*2));
+			spear[i] = weapon.crop((width*6), (height*2)*i, (width*2), (height*2));
 		}
+		ballNChain[0] = weapon.crop((width*8), 0, (width*2), (height*2));
+		ballNChain[1] = weapon.crop((width*8), (height*2), (width*2), (height*2));
 	}
 }

@@ -6,6 +6,7 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import game.Handler;
+import game.Tiles.Tile;
 import game.entities.Entity;
 
 public abstract class Weapon {
@@ -16,11 +17,10 @@ public abstract class Weapon {
 	protected BufferedImage displayTexture;
 	protected BufferedImage attkTexture;
 	//durability
-	public static final int DEFAULT_DURABILITY = 10;
-	protected boolean notBroken = true;
+	public static final int DEFAULT_DURABILITY = 20;
 	protected int durability;
 	//cooldown
-	public static final int DEFAULT_COOLDOWN = 10;
+	public static final int DEFAULT_COOLDOWN = 20;
 	protected boolean attacking = false;
 	protected int coolDown;
 	//hitbox
@@ -30,12 +30,15 @@ public abstract class Weapon {
 	//other
 	protected int damage;
 	protected boolean pickedUp = false;
+	protected int width, height;
 	
 	public Weapon(Handler handler, int width, int height) {
 		
 		this.handler = handler;
 		durability = DEFAULT_DURABILITY;
 		coolDown = -1;
+		this.width = width;
+		this.height = height;
 		
 		hitbox = new Rectangle(0, 0, width, height);
 		
@@ -67,7 +70,6 @@ public abstract class Weapon {
 	public void hurt() {
 		durability--;
 		if  (durability <= 0) {
-			notBroken = false;
 			die();
 		}
 	}
@@ -81,27 +83,29 @@ public abstract class Weapon {
 			// draws a border box and durability box
 			g.setColor(Color.black);
 			g.fillRect((int) (handler.getWidth() - 455)
-					, (int) (handler.getHeight() - 75), (10 * this.DEFAULT_DURABILITY) + 10, 25);
+					, (int) (handler.getHeight() - 75), (5 * this.DEFAULT_DURABILITY) + 10, 25);
 			g.setColor(Color.green);
 			g.fillRect((int) (handler.getWidth() - 450)
-					, (int) (handler.getHeight() - 70), (10 * this.durability), 15);
+					, (int) (handler.getHeight() - 70), (5 * this.durability), 15);
 			
 			// draws a border box and the weapon's cooldown if it's on cooldown
 			
 			g.setColor(Color.black);
 			g.fillRect((int) (handler.getWidth() - 455)
-					, (int) (handler.getHeight() - 55), (10 * this.DEFAULT_COOLDOWN) + 10, 25);
+					, (int) (handler.getHeight() - 55), (5 * this.DEFAULT_COOLDOWN) + 10, 25);
 			if (coolDown != -1) {
 				g.setColor(Color.blue);
 				g.fillRect((int) (handler.getWidth() - 450)
-						, (int) (handler.getHeight() - 50), (10 * this.coolDown), 15);
+						, (int) (handler.getHeight() - 50), (5 * this.coolDown), 15);
 			}
 			g.setColor(Color.black);
-			g.fillRect((int) (handler.getWidth() - 485)
-					, (int) (handler.getHeight() - 65), 30, 30);
-			g.drawImage(displayTexture, (int) (handler.getWidth() - 480)
-					, (int) (handler.getHeight() - 60), null);
+			g.fillRect((int) (handler.getWidth() - 495)
+					, (int) (handler.getHeight() - 75), 40, 45);
+			g.drawImage(displayTexture, (int) (handler.getWidth() - 490)
+					, (int) (handler.getHeight() - 72), null);
 		} else {
+			g.setColor(Color.BLUE);
+			g.fillRect(hitbox.x, hitbox.y, hitbox.width, hitbox.height);
 			g.drawImage(displayTexture, (int) (x - handler.getGameCamera().getxOffset())
 					, (int) (y - handler.getGameCamera().getyOffset()), null);
 		}
@@ -115,16 +119,16 @@ public abstract class Weapon {
 				case('f'):
 					return;
 				case('u'):
-					g.drawImage(attkTexture, (int) x, (int) (y - 10), null);
+					g.drawImage(attkTexture, (int) x, (int) (y - (Tile.TILEHEIGHT / 2)), null);
 					break;
 				case('d'):
-					g.drawImage(attkTexture, (int) x, (int) (y + 10), null);
+					g.drawImage(attkTexture, (int) x, (int) (y + (Tile.TILEHEIGHT / 2)), null);
 					break;
 				case('l'):
-					g.drawImage(attkTexture, (int) (x - 10), (int) y, null);
+					g.drawImage(attkTexture, (int) (x - (Tile.TILEWIDTH / 2)), (int) y, null);
 					break;
 				case('r'):
-					g.drawImage(attkTexture, (int) (x + 10), (int) y, null);
+					g.drawImage(attkTexture, (int) (x + (Tile.TILEWIDTH / 2)), (int) y, null);
 					break;
 				default:
 					return;

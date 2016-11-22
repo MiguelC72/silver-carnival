@@ -60,7 +60,7 @@ public class LongSword extends Weapon {
 	}
 	
 	public void onCoolDown() {
-		coolDown -= 1;
+		coolDown -= 3;
 		if (coolDown <= 0) {
 			coolDown = -1;
 			attacking = false;
