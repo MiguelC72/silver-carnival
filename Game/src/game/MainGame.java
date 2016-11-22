@@ -38,7 +38,7 @@ public class MainGame implements Runnable {
 	 */
 	public String title;
 	
-	// Input
+	// Input 
 	/**
 	 * The main key manager
 	 */
