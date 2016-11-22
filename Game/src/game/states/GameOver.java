@@ -13,7 +13,7 @@ public class GameOver extends State {
 	
 	public GameOver(Handler handler) {
 		super(handler);
-		img = ImageLoader.loadImage("/textures/testGameOver.png");
+		img = ImageLoader.loadImage("/textures/loseScreen.png");
 	}
 
 	@Override

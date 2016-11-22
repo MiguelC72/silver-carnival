@@ -31,13 +31,13 @@ public class Title extends State{
 	Rectangle cursor = new Rectangle();
 	public Title(Handler handler) {
 		super(handler);
-		img = ImageLoader.loadImage("/textures/testTitle.png");
+		img = ImageLoader.loadImage("/textures/titleScreen.png");
 		//create hitboxes for options
 		//TODO hitbox here
-		start.width = 20;
-		start.height = 20;
-		start.x = 200;
-		start.y = 200;
+		start.width = 150;
+		start.height = 100;
+		start.x = 205;
+		start.y = 420;
 	}
 	
 	/**
@@ -73,8 +73,8 @@ public class Title extends State{
 		g.fillRect(0, 0, handler.getWidth(), handler.getHeight());
 		g.drawImage(img, 0, 0, handler.getWidth(), handler.getHeight(), null);
 		//Draw start rectangle
-		g.setColor(Color.BLACK);
-		g.fillRect(start.x, start.y, start.width, start.height);
+		//g.setColor(Color.BLUE);
+		//g.fillRect(start.x, start.y, start.width, start.height);
 	}
 	
 }
