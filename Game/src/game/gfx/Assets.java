@@ -19,13 +19,13 @@ public class Assets {
 	 * These are the various sprites used.
 	 */
 	//World 1 images
-	public static BufferedImage grass, stone, lava, tree, cE1, rock, stonegrass, water, sand;
+	public static BufferedImage grass, stone, lava, tree, cE1, rock, stonegrass;
 	//World 2 images
-	public static BufferedImage cFloor, cRock, cMushroom, cSlime, cExit, cWall;
+	public static BufferedImage cFloor, cRock;
 	//Player images
 	public static BufferedImage player;
 	//Enemy Images
-	public static BufferedImage slime, mouse, skeleton, snake;
+	public static BufferedImage slime, mouse;
 	//Static Images
 	public static BufferedImage chest;
 	//Weapon Images
@@ -34,6 +34,7 @@ public class Assets {
 	public static BufferedImage[] axe = new BufferedImage[5];
 	public static BufferedImage[] ballNChain = new BufferedImage[2];
 	public static BufferedImage[] spear = new BufferedImage[5];
+	public static BufferedImage katana;
 	/**
 	 * This function loads and crops out sprites from the /res/textures folder
 	 * and places the images in their respective bufferedImage variable
@@ -49,24 +50,14 @@ public class Assets {
 		tree = world1.crop(width *4, 0, width, height);
 		cE1 = world1.crop(0, height, width, height);
 		stonegrass = world1.crop(width, height, width, height);
-		water = world1.crop(width *2, height, width, height);
-		sand = world1.crop(width *3, height, width, height);
-		
 		SpriteSheet world2 = new SpriteSheet(ImageLoader.loadImage("/textures/world2tileSheet.png"));
 		cFloor = world2.crop(0, 0, width, height);
 		cRock = world2.crop(width, 0, width, height);
-		cMushroom = world2.crop(width*2, 0, width, height);
-		cSlime = world2.crop(width *3, 0, width, height);
-		cExit = world2.crop(width *4, 0, width, height);
-		cWall = world2.crop(0, height, width, height);
-
-		//Finds a creature sheet from resources folder		
+		//Finds a creature sheet from resources folder
 		SpriteSheet sheet2 = new SpriteSheet(ImageLoader.loadImage("/textures/creatureSheet.png"));
 		//Grab each sprite from the sheet and apply to each creature variable
 		slime = sheet2.crop(0, 0, width, height);
 		mouse = sheet2.crop(width, 0, width, height);
-		skeleton = sheet2.crop(width *2, 0, width, height);
-		snake = sheet2.crop(width *3, 0, width, height);
 		SpriteSheet sheet3 = new SpriteSheet(ImageLoader.loadImage("/textures/characterSheet.png"));
 		player = sheet3.crop(0, 0, width, height);
 		SpriteSheet sheet4 = new SpriteSheet(ImageLoader.loadImage("/textures/objectSheet.png"));
@@ -82,5 +73,6 @@ public class Assets {
 		}
 		ballNChain[0] = weapon.crop((width*8), 0, (width*2), (height*2));
 		ballNChain[1] = weapon.crop((width*8), (height*2), (width*2), (height*2));
+		katana = weapon.crop(0, (height*12), (width*2), (height*2));
 	}
 }
