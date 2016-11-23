@@ -19,9 +19,9 @@ public class Assets {
 	 * These are the various sprites used.
 	 */
 	//World 1 images
-	public static BufferedImage grass, stone, lava, tree, cE1, rock, stonegrass;
+	public static BufferedImage grass, stone, lava, tree, cE1, rock, stonegrass, water, sand;
 	//World 2 images
-	public static BufferedImage cFloor, cRock;
+	public static BufferedImage cFloor, cRock, cMushroom, cSlime, cExit, cWall;
 	//Player images
 	public static BufferedImage player;
 	//Enemy Images
@@ -50,9 +50,17 @@ public class Assets {
 		tree = world1.crop(width *4, 0, width, height);
 		cE1 = world1.crop(0, height, width, height);
 		stonegrass = world1.crop(width, height, width, height);
+		water = world1.crop(width *2, height, width, height);
+		sand = world1.crop(width *3, height, width, height);
+		//Sprites for world2 tilesheet
 		SpriteSheet world2 = new SpriteSheet(ImageLoader.loadImage("/textures/world2tileSheet.png"));
 		cFloor = world2.crop(0, 0, width, height);
 		cRock = world2.crop(width, 0, width, height);
+		cRock = world2.crop(width, 0, width, height);
+		cMushroom = world2.crop(width*2, 0, width, height);
+		cSlime = world2.crop(width *3, 0, width, height);
+		cExit = world2.crop(width *4, 0, width, height);
+		cWall = world2.crop(0, height, width, height);
 		//Finds a creature sheet from resources folder
 		SpriteSheet sheet2 = new SpriteSheet(ImageLoader.loadImage("/textures/creatureSheet.png"));
 		//Grab each sprite from the sheet and apply to each creature variable
@@ -73,6 +81,6 @@ public class Assets {
 		}
 		ballNChain[0] = weapon.crop((width*8), 0, (width*2), (height*2));
 		ballNChain[1] = weapon.crop((width*8), (height*2), (width*2), (height*2));
-		katana = weapon.crop(0, (height*12), (width*2), (height*2));
+		katana = weapon.crop(0, (height*10), (width*2), (height*2));
 	}
 }
