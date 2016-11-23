@@ -7,7 +7,9 @@ import game.Tiles.Tile;
 import game.entities.EntityManager;
 import game.entities.creatures.Mouse;
 import game.entities.creatures.Player;
+import game.entities.creatures.Skeleton;
 import game.entities.creatures.Slime;
+import game.entities.creatures.Snake;
 import game.entities.statics.Chest;
 import game.utils.Utils;
 import game.weapons.Katana;
@@ -61,7 +63,16 @@ public class World {
 		entityManager = new EntityManager(handler, new Player(handler, 100, 100));
 		entityManager.addEntity(new Slime(handler, (Tile.TILEWIDTH * 15), (Tile.TILEHEIGHT * 9)));
 		entityManager.addEntity(new Slime(handler, (Tile.TILEWIDTH * 10), (Tile.TILEHEIGHT * 7)));
+		entityManager.addEntity(new Slime(handler, (Tile.TILEWIDTH * 7), (Tile.TILEHEIGHT * 39)));
+		entityManager.addEntity(new Slime(handler, (Tile.TILEWIDTH * 5), (Tile.TILEHEIGHT * 33)));
 		entityManager.addEntity(new Mouse(handler, (Tile.TILEWIDTH * 3), (Tile.TILEHEIGHT * 9)));
+		entityManager.addEntity(new Mouse(handler, (Tile.TILEWIDTH * 10), (Tile.TILEHEIGHT * 26)));
+		entityManager.addEntity(new Snake(handler, (Tile.TILEWIDTH * 12), (Tile.TILEHEIGHT * 20)));
+		entityManager.addEntity(new Snake(handler, (Tile.TILEWIDTH * 9), (Tile.TILEHEIGHT * 20)));
+		entityManager.addEntity(new Snake(handler, (Tile.TILEWIDTH * 7), (Tile.TILEHEIGHT * 20)));
+		entityManager.addEntity(new Skeleton(handler, (Tile.TILEWIDTH * 13), (Tile.TILEHEIGHT * 44)));
+		entityManager.addEntity(new Skeleton(handler, (Tile.TILEWIDTH * 13), (Tile.TILEHEIGHT * 35)));
+		entityManager.addEntity(new Skeleton(handler, (Tile.TILEWIDTH * 35), (Tile.TILEHEIGHT * 46)));
 		//All chests
 		entityManager.addEntity(new Chest(handler, (Tile.TILEWIDTH * 3), (Tile.TILEHEIGHT * 6)));
 		entityManager.addEntity(new Chest(handler, (Tile.TILEWIDTH * 14), (Tile.TILEHEIGHT * 20)));

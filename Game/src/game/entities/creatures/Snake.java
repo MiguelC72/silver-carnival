@@ -12,7 +12,7 @@ public class Snake extends Creature {
 	private Random random;
 	private int sleep = 0, direction = 5;
 	
-	public Snake(Handler handler, float x, float y, int width, int height) {
+	public Snake(Handler handler, float x, float y) {
 		super(handler, x, y, DEFAULT_CREATURE_WIDTH, DEFAULT_CREATURE_HEIGHT);
 		
 		bounds.x = 8;
@@ -93,7 +93,7 @@ public class Snake extends Creature {
 		int posX = (int) (x - handler.getGameCamera().getxOffset());
 		int posY = (int) (y - handler.getGameCamera().getyOffset());
 		
-		g.drawImage(Assets.slime, posX, posY, width, height, null);
+		g.drawImage(Assets.snake, posX, posY, width, height, null);
 		
 	}
 

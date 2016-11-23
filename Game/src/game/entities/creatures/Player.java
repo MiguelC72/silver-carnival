@@ -140,7 +140,7 @@ public class Player extends Creature {
 		if (iFrames < 15)
 			iFrames++;
 		else {
-			System.out.println("You took 1 damage.");
+			// System.out.println("You took 1 damage.");
 			health--;
 			if  (health <= 0) {
 				alive = false;
