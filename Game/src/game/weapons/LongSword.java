@@ -48,8 +48,8 @@ public class LongSword extends Weapon {
 					attkTexture = Assets.longSword[1];
 			}
 		} else {
-			hitbox.x = (int) (x - handler.getGameCamera().getxOffset());
-			hitbox.y = (int) (y - handler.getGameCamera().getyOffset());
+			hitbox.x = (int) x;
+			hitbox.y = (int) y;
 			if (c.intersects(hitbox)) {
 				e.setNewWeapon(this);
 				pickedUp = true;

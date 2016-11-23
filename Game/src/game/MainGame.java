@@ -138,6 +138,7 @@ public class MainGame implements Runnable {
 		} else {
 			if (State.getState() == winState){
 				State.setState(winState);
+			} else {
 				if (State.getState() == gameOverState)
 					State.setState(gameOverState);
 				else {
@@ -364,5 +365,13 @@ public class MainGame implements Runnable {
 		return gameOverState;
 	}
 
+	/**
+	 * Returns the win state
+	 * @return
+	 * 	The winState
+	 */
+	public State getWinState() {
+		return winState;
+	}
 	
 }

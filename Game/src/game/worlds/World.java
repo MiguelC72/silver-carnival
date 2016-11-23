@@ -10,6 +10,7 @@ import game.entities.creatures.Player;
 import game.entities.creatures.Slime;
 import game.entities.statics.Chest;
 import game.utils.Utils;
+import game.weapons.Katana;
 
 /**
  * The world class is in charge of storing the tile layout of the world,
@@ -66,6 +67,9 @@ public class World {
 		entityManager.addEntity(new Chest(handler, (Tile.TILEWIDTH * 14), (Tile.TILEHEIGHT * 20)));
 
 
+		//Item that ends the game on pick up
+		entityManager.addWeapon(new Katana(handler, Tile.TILEWIDTH, Tile.TILEHEIGHT, (Tile.TILEWIDTH * 3), (Tile.TILEHEIGHT * 2)));
+		
 		loadWorld(path);
 		
 		entityManager.getPlayer().setX(spawnX);
