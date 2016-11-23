@@ -23,6 +23,9 @@ public class Tile {
 	public static Tile caveFloor = new CaveFloorTile(9);
 	public static Tile caveWall = new CaveWallTile(10);
 	public static Tile caveRock = new CaveRockTile(11);
+	public static Tile caveMush = new CaveMushTile(12);
+	public static Tile caveSlime = new CaveSlimeTile(13);
+	public static Tile caveExit = new CaveExitTile(14);
 	
 	// CLASS
 	
