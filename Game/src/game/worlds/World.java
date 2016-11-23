@@ -57,7 +57,7 @@ public class World {
 	public World(Handler handler, String path) {
 		
 		this.handler = handler;
-		//All enemies
+		//All enemies wow
 		entityManager = new EntityManager(handler, new Player(handler, 100, 100));
 		entityManager.addEntity(new Slime(handler, (Tile.TILEWIDTH * 15), (Tile.TILEHEIGHT * 9)));
 		entityManager.addEntity(new Slime(handler, (Tile.TILEWIDTH * 10), (Tile.TILEHEIGHT * 7)));
