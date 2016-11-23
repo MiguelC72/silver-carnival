@@ -65,11 +65,11 @@ public class World {
 		//All chests
 		entityManager.addEntity(new Chest(handler, (Tile.TILEWIDTH * 3), (Tile.TILEHEIGHT * 6)));
 		entityManager.addEntity(new Chest(handler, (Tile.TILEWIDTH * 14), (Tile.TILEHEIGHT * 20)));
-		entityManager.addEntity(new Chest(handler, (Tile.TILEWIDTH * 12), (Tile.TILEHEIGHT * 20)));
+		entityManager.addEntity(new Chest(handler, (Tile.TILEWIDTH * 3), (Tile.TILEHEIGHT * 38)));
 
 
 		//Item that ends the game on pick up
-		entityManager.addWeapon(new Katana(handler, Tile.TILEWIDTH, Tile.TILEHEIGHT, (Tile.TILEWIDTH * 3), (Tile.TILEHEIGHT * 2)));
+		entityManager.addWeapon(new Katana(handler, Tile.TILEWIDTH, Tile.TILEHEIGHT, (Tile.TILEWIDTH * 48), (Tile.TILEHEIGHT * 48)));
 		
 		loadWorld(path);
 		
