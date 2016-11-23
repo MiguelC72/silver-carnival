@@ -13,6 +13,7 @@ import game.states.GameOver;
 import game.states.Settings;
 import game.states.State;
 import game.states.Title;
+import game.states.Win;
 
 /**
  * This is the Main class that's running everything.
@@ -101,6 +102,11 @@ public class MainGame implements Runnable {
 	private State gameOverState;
 	
 	/**
+	 * Contains the win state
+	 */
+	private State winState;
+	
+	/**
 	 * Constructs the MainGame object, and sets the default values of the window
 	 * @param title
 	 * 	The window's title bar
@@ -130,13 +136,16 @@ public class MainGame implements Runnable {
 		if (State.getState() == titleState){
 			State.setState(titleState);
 		} else {
-			if (State.getState() == gameOverState)
-				State.setState(gameOverState);
-			else {
-				if (keyManager.pause)
-					State.setState(settingsState); 
-				else
-					State.setState(gameState);
+			if (State.getState() == winState){
+				State.setState(winState);
+				if (State.getState() == gameOverState)
+					State.setState(gameOverState);
+				else {
+					if (keyManager.pause)
+						State.setState(settingsState); 
+					else
+						State.setState(gameState);
+				}
 			}
 		}
 		if (State.getState() != null) {
@@ -201,6 +210,7 @@ public class MainGame implements Runnable {
 		settingsState = new Settings(handler);
 		titleState = new Title(handler);
 		gameOverState = new GameOver(handler);
+		winState = new Win(handler);
 		State.setState(titleState);
 	}
 	

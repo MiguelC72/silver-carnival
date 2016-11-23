@@ -8,13 +8,20 @@ public class Tile {
 	// STATIC VARS
 	
 	public static Tile[] mTiles = new Tile[256]; // master tiles
+	//World1 tiles
 	public static Tile grassTile = new GrassTile(0);
 	public static Tile brickTile = new BrickTile(1);
 	public static Tile lavaTile = new LavaTile(2);
 	public static Tile treeTile = new TreeTile(3);
 	public static Tile caveEnt = new CaveEnterTile(4);
-	public static Tile caveFloor = new CaveFloorTile(5);
+	public static Tile brickgrassTile = new BrickGrassTile(5);
 	public static Tile rockTile = new RockTile(6);
+	public static Tile waterTile = new WaterTile(7);
+	public static Tile sandTile = new SandTile(8);
+	
+	//World2 tiles
+	public static Tile caveFloor = new CaveFloorTile(9);
+	public static Tile caveRock = new CaveRockTile(10);
 	
 	// CLASS
 	

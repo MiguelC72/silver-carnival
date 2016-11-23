@@ -5,11 +5,11 @@ import java.awt.Graphics;
 import game.Handler;
 import game.Tiles.Tile;
 import game.entities.EntityManager;
+import game.entities.creatures.Mouse;
 import game.entities.creatures.Player;
 import game.entities.creatures.Slime;
 import game.entities.statics.Chest;
 import game.utils.Utils;
-import game.weapons.Nuke;
 
 /**
  * The world class is in charge of storing the tile layout of the world,
@@ -56,15 +56,15 @@ public class World {
 	public World(Handler handler, String path) {
 		
 		this.handler = handler;
+		//All enemies
 		entityManager = new EntityManager(handler, new Player(handler, 100, 100));
 		entityManager.addEntity(new Slime(handler, (Tile.TILEWIDTH * 15), (Tile.TILEHEIGHT * 9)));
-		//entityManager.addEntity(new Mouse(handler, (Tile.TILEWIDTH * 10), (Tile.TILEHEIGHT * 5)));
-		entityManager.addEntity(new Chest(handler, (Tile.TILEWIDTH * 4), (Tile.TILEHEIGHT * 2)));
-		entityManager.addEntity(new Chest(handler, (Tile.TILEWIDTH * 5), (Tile.TILEHEIGHT * 2)));
-		entityManager.addEntity(new Chest(handler, (Tile.TILEWIDTH * 6), (Tile.TILEHEIGHT * 2)));
-		entityManager.addEntity(new Chest(handler, (Tile.TILEWIDTH * 7), (Tile.TILEHEIGHT * 2)));
-		entityManager.addEntity(new Chest(handler, (Tile.TILEWIDTH * 8), (Tile.TILEHEIGHT * 2)));
-		entityManager.addEntity(new Chest(handler, (Tile.TILEWIDTH * 3), (Tile.TILEHEIGHT * 2)));
+		entityManager.addEntity(new Slime(handler, (Tile.TILEWIDTH * 10), (Tile.TILEHEIGHT * 7)));
+		entityManager.addEntity(new Mouse(handler, (Tile.TILEWIDTH * 3), (Tile.TILEHEIGHT * 9)));
+		//All chests
+		entityManager.addEntity(new Chest(handler, (Tile.TILEWIDTH * 3), (Tile.TILEHEIGHT * 6)));
+		entityManager.addEntity(new Chest(handler, (Tile.TILEWIDTH * 14), (Tile.TILEHEIGHT * 20)));
+
 
 		loadWorld(path);
 		
