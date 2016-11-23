@@ -104,8 +104,8 @@ public abstract class Weapon {
 			g.drawImage(displayTexture, (int) (handler.getWidth() - 490)
 					, (int) (handler.getHeight() - 72), null);
 		} else {
-			g.setColor(Color.BLUE);
-			g.fillRect(hitbox.x, hitbox.y, hitbox.width, hitbox.height);
+			//g.setColor(Color.BLUE);
+			//g.fillRect(hitbox.x, hitbox.y, hitbox.width, hitbox.height);
 			g.drawImage(displayTexture, (int) (x - handler.getGameCamera().getxOffset())
 					, (int) (y - handler.getGameCamera().getyOffset()), null);
 		}
