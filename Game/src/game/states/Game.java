@@ -3,9 +3,6 @@ package game.states;
 import java.awt.Graphics;
 
 import game.Handler;
-import game.Tiles.Tile;
-import game.entities.creatures.Player;
-import game.entities.creatures.Slime;
 import game.worlds.World;
 
 /**

@@ -74,6 +74,7 @@ public abstract class Weapon {
 		}
 	}
 	
+	@SuppressWarnings("static-access")
 	public void render(Graphics g) {
 		
 		if (pickedUp) {

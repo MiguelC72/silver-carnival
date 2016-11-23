@@ -6,7 +6,6 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import game.Handler;
-import game.Input.MouseManager;
 import game.gfx.ImageLoader;
 
 /**

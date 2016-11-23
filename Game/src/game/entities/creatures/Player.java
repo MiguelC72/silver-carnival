@@ -7,7 +7,6 @@ import game.Handler;
 import game.gfx.Assets;
 import game.states.State;
 import game.weapons.Dagger;
-import game.weapons.LongSword;
 import game.weapons.Weapon;
 
 /**
@@ -108,6 +107,7 @@ public class Player extends Creature {
 	 * @param g
 	 * 	The main graphics object that also this method to draw to the screen.
 	 */
+	@SuppressWarnings("static-access")
 	public void render(Graphics g) {
 		
 		if ((iFrames % 2) == 0) {

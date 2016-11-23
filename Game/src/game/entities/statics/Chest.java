@@ -9,14 +9,11 @@ import game.gfx.Assets;
 import game.weapons.Axe;
 import game.weapons.BallNChain;
 import game.weapons.LongSword;
-import game.weapons.Nuke;
 import game.weapons.Spear;
-import game.weapons.Weapon;
 
 public class Chest extends StaticEntity {
 	
 	private Random itemGen = new Random();
-	private Weapon[] weaponList = new Weapon[5];
 
 	public Chest(Handler handler, float x, float y) {
 		super(handler, x, y, Tile.TILEWIDTH, Tile.TILEHEIGHT);

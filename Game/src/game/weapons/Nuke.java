@@ -6,7 +6,6 @@ import java.awt.Rectangle;
 
 import game.Handler;
 import game.entities.Entity;
-import game.gfx.Assets;
 
 public class Nuke extends Weapon {
 
@@ -59,6 +58,7 @@ public class Nuke extends Weapon {
 		this.hurt();
 	}
 	
+	@SuppressWarnings("static-access")
 	@Override
 	public void render(Graphics g) {
 		if (pickedUp) {
