@@ -21,7 +21,8 @@ public class Tile {
 	
 	//World2 tiles
 	public static Tile caveFloor = new CaveFloorTile(9);
-	public static Tile caveRock = new CaveRockTile(10);
+	public static Tile caveWall = new CaveWallTile(10);
+	public static Tile caveRock = new CaveRockTile(11);
 	
 	// CLASS
 	
