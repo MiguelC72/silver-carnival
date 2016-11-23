@@ -57,7 +57,7 @@ public class World {
 	public World(Handler handler, String path) {
 		
 		this.handler = handler;
-		//All enemies wow
+		//All enemies
 		entityManager = new EntityManager(handler, new Player(handler, 100, 100));
 		entityManager.addEntity(new Slime(handler, (Tile.TILEWIDTH * 15), (Tile.TILEHEIGHT * 9)));
 		entityManager.addEntity(new Slime(handler, (Tile.TILEWIDTH * 10), (Tile.TILEHEIGHT * 7)));
@@ -65,7 +65,6 @@ public class World {
 		//All chests
 		entityManager.addEntity(new Chest(handler, (Tile.TILEWIDTH * 3), (Tile.TILEHEIGHT * 6)));
 		entityManager.addEntity(new Chest(handler, (Tile.TILEWIDTH * 14), (Tile.TILEHEIGHT * 20)));
-		entityManager.addEntity(new Chest(handler, (Tile.TILEWIDTH * 12), (Tile.TILEHEIGHT * 20)));
 
 
 		//Item that ends the game on pick up
