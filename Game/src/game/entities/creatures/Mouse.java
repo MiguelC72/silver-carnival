@@ -20,7 +20,7 @@ public class Mouse extends Creature{
 		bounds.width = 25;
 		bounds.height = 20;
 		random = new Random();
-		health = 10;
+		health = 15;
 		this.speed = 3.0f; //20.0f;
 	}
 	
@@ -77,8 +77,8 @@ public class Mouse extends Creature{
 			}
 		}
 	}
+	
 	public void render(Graphics g) {
-		
 		g.drawImage(Assets.mouse, (int) (x - handler.getGameCamera().getxOffset())
 				, (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
 	}

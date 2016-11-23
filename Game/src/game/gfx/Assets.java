@@ -25,7 +25,7 @@ public class Assets {
 	//Player images
 	public static BufferedImage player;
 	//Enemy Images
-	public static BufferedImage slime, mouse;
+	public static BufferedImage slime, mouse, skeleton, snake;
 	//Static Images
 	public static BufferedImage chest;
 	//Weapon Images
@@ -66,6 +66,8 @@ public class Assets {
 		//Grab each sprite from the sheet and apply to each creature variable
 		slime = sheet2.crop(0, 0, width, height);
 		mouse = sheet2.crop(width, 0, width, height);
+		skeleton = sheet2.crop(width*2, 0, width, height);
+		snake = sheet2.crop(width*3, 0, width, height);
 		SpriteSheet sheet3 = new SpriteSheet(ImageLoader.loadImage("/textures/characterSheet.png"));
 		player = sheet3.crop(0, 0, width, height);
 		SpriteSheet sheet4 = new SpriteSheet(ImageLoader.loadImage("/textures/objectSheet.png"));
